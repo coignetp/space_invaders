@@ -13,13 +13,19 @@ namespace graphics {
 	public:
 		GameWindow(sf::VideoMode vid, const sf::String &title, sf::Uint32 style = sf::Style::Default, const sf::ContextSettings &settings = sf::ContextSettings());
 	
-
 		/**
-		* \brief Update the render texture if necessary	.
+		* \brief Real reference of the layers.
 		*
 		* \return the real std::vector<sf::RenderTexture>.
 		*/
 		std::vector<sf::RenderTexture>& getRealLayers();
+
+		/**
+		* \brief Print the different layers
+		*
+		* \return an error code.
+		*/
+		int print();
 	private:
 		std::vector<sf::RenderTexture> m_layers;
 	};

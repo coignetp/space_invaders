@@ -10,11 +10,24 @@ namespace graphics {
 		sf::RenderWindow(vid, title, style, settings),
 		m_layers(WINDOW_LAYER_TOTAL)
 	{
-
+		for (unsigned int i(0); i < m_layers.size(); i++)
+			m_layers.at(i).create(this->getSize().x, this->getSize().y);
 	}
 
 	std::vector<sf::RenderTexture>& GameWindow::getRealLayers()
 	{
 		return m_layers;
+	}
+
+	int GameWindow::print()
+	{
+		this->clear();
+
+		for (unsigned int i(0); i < m_layers.size() ; i++)
+			this->draw(sf::Sprite(m_layers.at(i).getTexture()));
+		
+		this->display();
+
+		return 0;
 	}
 }
