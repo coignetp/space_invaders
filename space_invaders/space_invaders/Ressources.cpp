@@ -4,6 +4,7 @@
 namespace graphics {
 	Ressources::Ressources()
 	{
+		load();
 	}
 
 
@@ -14,5 +15,10 @@ namespace graphics {
 	std::map<int, sf::Texture>& Ressources::getRealTextures()
 	{
 		return m_textures;
+	}
+
+	int Ressources::load()
+	{
+		return 0;
 	}
 }

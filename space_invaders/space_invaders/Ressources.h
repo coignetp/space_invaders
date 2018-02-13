@@ -18,6 +18,12 @@ namespace graphics {
 		*/
 		std::map<int, sf::Texture>& getRealTextures();
 
+		/**
+		* \brief Loads all the ressources of the game
+		*
+		* \return error code
+		*/
+		int load();
 	private:
 		std::map<int, sf::Texture> m_textures;
 	};
