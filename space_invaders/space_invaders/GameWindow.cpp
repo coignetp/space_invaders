@@ -19,6 +19,13 @@ namespace graphics {
 		return m_layers;
 	}
 
+
+	Ressources& GameWindow::getRealRessources()
+	{
+		return m_ressources;
+	}
+
+
 	int GameWindow::print()
 	{
 		this->clear();

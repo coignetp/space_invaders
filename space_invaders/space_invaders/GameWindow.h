@@ -3,6 +3,8 @@
 #include <SFML\System.hpp>
 #include <SFML\Graphics.hpp>
 
+#include "Ressources.h"
+
 namespace graphics {
 
 	enum WINDOW_LAYERS { WINDOW_LAYER_BG, WINDOW_LAYER_ITEM, WINDOW_LAYER_TEXT, WINDOW_LAYER_TOTAL};
@@ -19,6 +21,12 @@ namespace graphics {
 		* \return the real std::vector<sf::RenderTexture>.
 		*/
 		std::vector<sf::RenderTexture>& getRealLayers();
+		/**
+		* \brief Real reference of the ressources.
+		*
+		* \return the real Ressources.
+		*/
+		Ressources& getRealRessources();
 
 		/**
 		* \brief Print the different layers
@@ -28,6 +36,7 @@ namespace graphics {
 		int print();
 	private:
 		std::vector<sf::RenderTexture> m_layers;
+		Ressources m_ressources;
 	};
 
 }
