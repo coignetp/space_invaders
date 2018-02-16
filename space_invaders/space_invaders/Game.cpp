@@ -23,7 +23,25 @@ int Game::start()
 {
 	while (m_window.isOpen())
 	{
-		m_window.print();
+		int ret = m_window.print();
+
+		if (ret != 0)
+			return ret;
+
 		sf::sleep(sf::milliseconds(30));
 	}
+
+	return 0;
+}
+
+int Game::update()
+{
+	sf::Event event;
+	while (m_window.pollEvent(event))
+	{
+		if (event.type == sf::Event::Closed)
+			m_window.close();
+	}
+
+	return 0;
 }
