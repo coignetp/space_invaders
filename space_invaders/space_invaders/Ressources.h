@@ -1,6 +1,7 @@
 #pragma once
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
+#include <memory>
 
 namespace graphics {
 
@@ -16,7 +17,7 @@ namespace graphics {
 		*
 		* \return the textures map.
 		*/
-		std::map<int, sf::Texture>& getRealTextures();
+		std::map<int, std::shared_ptr<sf::Texture> >& getRealTextures();
 
 		/**
 		* \brief Loads all the ressources of the game
@@ -25,7 +26,7 @@ namespace graphics {
 		*/
 		int load();
 	private:
-		std::map<int, sf::Texture> m_textures;
+		std::map<int, std::shared_ptr<sf::Texture> > m_textures;
 	};
 
 }
