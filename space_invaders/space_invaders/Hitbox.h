@@ -17,8 +17,15 @@ namespace physics {
 		* \return sf::Rect<int> hitbox.
 		*/
 		sf::Rect<int> getRealRect();
+		/**
+		* \brief Gives the unique hitbox id.
+		*
+		* \return int id.
+		*/
+		int getId() const;
 
 	private:
+		int m_id;
 		sf::Rect<int> m_rect;
 	};
 
