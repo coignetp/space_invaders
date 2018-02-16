@@ -10,4 +10,9 @@ namespace physics {
 	Hitbox::~Hitbox()
 	{
 	}
+
+	sf::Rect<int> Hitbox::getRealRect()
+	{
+		return m_rect;
+	}
 }
