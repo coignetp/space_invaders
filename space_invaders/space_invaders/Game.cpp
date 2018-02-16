@@ -17,3 +17,13 @@ graphics::GameWindow& Game::getRealWindow()
 {
 	return m_window;
 }
+
+
+int Game::start()
+{
+	while (m_window.isOpen())
+	{
+		m_window.print();
+		sf::sleep(sf::milliseconds(30));
+	}
+}

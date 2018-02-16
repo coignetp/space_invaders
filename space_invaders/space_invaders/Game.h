@@ -16,6 +16,13 @@ public:
 	*/
 	graphics::GameWindow& getRealWindow();
 
+	/**
+	* \brief Starts the game. Contains the main loop
+	*
+	* \return int error code
+	*/
+	int start();
+
 private:
 	graphics::GameWindow m_window;
 };
