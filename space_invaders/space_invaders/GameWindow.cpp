@@ -12,6 +12,20 @@ namespace graphics {
 	{
 		for (unsigned int i(0); i < m_layers.size(); i++)
 			m_layers.at(i).create(this->getSize().x, this->getSize().y);
+
+		/// Draw the background on layer 0
+		m_spriteManager.getRealSprites().insert(std::make_pair<int, sf::Sprite>(
+			0, 
+			sf::Sprite(*m_ressources.getRealTextures()[RESS_BACKGROUND])
+		));
+
+		m_spriteManager.getRealSprites()[0].setScale(
+			(float)this->getSize().x / m_spriteManager.getRealSprites()[0].getLocalBounds().width,
+			(float)this->getSize().y / m_spriteManager.getRealSprites()[0].getLocalBounds().height
+		);
+
+		m_layers.at(0).draw(m_spriteManager.getRealSprites()[0]);
+		///
 	}
 
 	std::vector<sf::RenderTexture>& GameWindow::getRealLayers()
