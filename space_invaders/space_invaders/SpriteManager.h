@@ -10,6 +10,14 @@ namespace graphics {
 		SpriteManager();
 		~SpriteManager();
 
+	public:
+		/**
+		* \brief Gives the real sprites map
+		*
+		* \return std::map<int, sf::Sprite> sprites map
+		*/
+		std::map<int, sf::Sprite> &getRealSprites();
+
 	private:
 		std::map<int, sf::Sprite> m_sprites;
 	};

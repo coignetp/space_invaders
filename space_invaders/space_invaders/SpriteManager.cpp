@@ -10,4 +10,9 @@ namespace graphics {
 	SpriteManager::~SpriteManager()
 	{
 	}
+
+	std::map<int, sf::Sprite> &SpriteManager::getRealSprites()
+	{
+		return m_sprites;
+	}
 }
