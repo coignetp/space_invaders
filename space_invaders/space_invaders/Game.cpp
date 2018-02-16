@@ -23,7 +23,8 @@ int Game::start()
 {
 	while (m_window.isOpen())
 	{
-		int ret = m_window.print();
+		int ret = update();
+		ret = (m_window.print() << 1);
 
 		if (ret != 0)
 			return ret;
