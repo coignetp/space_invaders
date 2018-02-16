@@ -3,6 +3,7 @@
 #include <SFML\System.hpp>
 #include <SFML\Graphics.hpp>
 
+#include "SpriteManager.h"
 #include "Ressources.h"
 
 namespace graphics {
@@ -27,6 +28,12 @@ namespace graphics {
 		* \return the real Ressources.
 		*/
 		Ressources& getRealRessources();
+		/**
+		* \brief Real reference of the sprite manager.
+		*
+		* \return the real SpriteManager.
+		*/
+		SpriteManager& getRealSpriteManager();
 
 		/**
 		* \brief Print the different layers
@@ -37,6 +44,7 @@ namespace graphics {
 	private:
 		std::vector<sf::RenderTexture> m_layers;
 		Ressources m_ressources;
+		SpriteManager m_spriteManager;
 	};
 
 }

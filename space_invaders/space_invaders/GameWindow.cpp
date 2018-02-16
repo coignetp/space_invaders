@@ -26,6 +26,12 @@ namespace graphics {
 	}
 
 
+	SpriteManager& GameWindow::getRealSpriteManager()
+	{
+		return m_spriteManager;
+	}
+
+
 	int GameWindow::print()
 	{
 		this->clear();
