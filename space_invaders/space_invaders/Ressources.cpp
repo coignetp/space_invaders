@@ -21,20 +21,16 @@ namespace graphics {
 
 	int Ressources::load()
 	{
-		std::vector<std::shared_ptr<sf::Texture> > textu(RESS_TOTAL, std::make_shared<sf::Texture>());
+		std::vector<std::string> filenames{ "data/bg.jpg", "data/me.png", "data/enemi.png" };
 
 		try {
-			if (!textu.at(RESS_BACKGROUND)->loadFromFile("data/bg.jpg"))
-				return -1;
-			m_textures.insert(std::make_pair(RESS_BACKGROUND, textu.at(RESS_BACKGROUND)));
-
-			if (!textu.at(1)->loadFromFile("data/me.png"))
-				return -1;
-			m_textures.insert(std::make_pair(RESS_ME, textu.at(RESS_ME)));
-
-			if (!textu.at(1)->loadFromFile("data/enemi.png"))
-				return -1;
-			m_textures.insert(std::make_pair(RESS_ENEMI, textu.at(RESS_ENEMI)));
+			for (unsigned int i(0); i < filenames.size(); i++)
+			{
+				std::shared_ptr<sf::Texture> textu = std::make_shared<sf::Texture>();
+				if (!textu->loadFromFile(filenames[i]))
+					return -1;
+				m_textures.insert(std::make_pair(i, textu));
+			}
 		}
 		catch (const std::exception & e)
 		{
