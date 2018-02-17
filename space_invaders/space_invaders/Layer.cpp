@@ -29,4 +29,9 @@ namespace graphics {
 
 		return 0;
 	}
+
+	void Layer::addSprite(const int &id)
+	{
+		m_sprites.push_back(id);
+	}
 }
