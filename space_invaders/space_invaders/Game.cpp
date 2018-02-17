@@ -48,11 +48,9 @@ int Game::update()
 			{
 			case sf::Keyboard::Right:
 				m_window.getRealCharacter().move(3, 0);
-				m_window.updateLayers();
 				break;
 			case sf::Keyboard::Left:
 				m_window.getRealCharacter().move(-3, 0);
-				m_window.updateLayers();
 				break;
 			default:
 				break;

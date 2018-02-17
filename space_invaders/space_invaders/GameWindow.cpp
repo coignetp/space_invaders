@@ -61,12 +61,4 @@ namespace graphics {
 
 		return 0;
 	}
-
-	int GameWindow::updateLayers()
-	{
-		//m_layers.at(WINDOW_LAYER_ITEM).clear();
-		//m_character.print(*this);
-
-		return 0;
-	}
 }

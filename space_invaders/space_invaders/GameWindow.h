@@ -49,12 +49,6 @@ namespace graphics {
 		* \return an error code.
 		*/
 		int print();
-		/**
-		* \brief Update the layer concerned
-		*
-		* \return an error code.
-		*/
-		int updateLayers();
 
 	private:
 		std::vector<std::unique_ptr<Layer>> m_layers;
