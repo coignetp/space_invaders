@@ -5,6 +5,8 @@
 
 namespace graphics {
 
+	class GameWindow;
+
 	class Layer
 	{
 	public:
@@ -17,6 +19,15 @@ namespace graphics {
 		* \return the real sprites.
 		*/
 		std::map<int, sf::Sprite> getRealSprites();
+
+		/**
+		* \brief Print the different sprites of the layer
+		*
+		* \param win : the main window
+		*
+		* \return an error code.
+		*/
+		int print(GameWindow &win);
 
 	private:
 		std::map<int, sf::Sprite> m_sprites;
