@@ -3,6 +3,7 @@
 #include <memory>
 #include <SFML\Graphics.hpp>
 #include "Hitbox.h"
+#include "GameWindow.h"
 
 class Ship
 {
@@ -53,6 +54,13 @@ public:
 	* \return std::shared_ptr<sf::Sprite>& ship sprite pointer.
 	*/
 	std::shared_ptr<sf::Sprite> &getRealSprite();
+
+	/**
+	* \brief Prints the ship on the screen
+	*
+	* \return int error code
+	*/
+	int print(graphics::GameWindow &win);
 
 private:
 	sf::Vector2i m_position;

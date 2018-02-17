@@ -1,5 +1,5 @@
 #include "Ship.h"
-
+#include "GameWindow.h"
 
 
 Ship::Ship()
@@ -50,4 +50,13 @@ physics::Hitbox &Ship::getRealHitbox()
 std::shared_ptr<sf::Sprite> &Ship::getRealSprite()
 {
 	return m_sprite;
+}
+
+
+int Ship::print(graphics::GameWindow &win)
+{
+	getRealSprite()->setPosition(sf::Vector2f(getPosition()));
+	win.getRealLayers()[graphics::WINDOW_LAYER_ITEM].draw(*getRealSprite());
+
+	return 0;
 }
