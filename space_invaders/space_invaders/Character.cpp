@@ -6,11 +6,11 @@
 Character::Character(graphics::GameWindow &win)
 {
 	win.getRealSpriteManager().getRealSprites().insert(std::make_pair(
-		42,
+		getHitbox().getId(),
 		sf::Sprite(*win.getRealRessources().getRealTextures()[graphics::RESS_ME])
 	));
 
-	this->getRealSprite() = std::make_shared<sf::Sprite>(win.getRealSpriteManager().getRealSprites()[42]);
+	this->getRealSprite() = std::make_shared<sf::Sprite>(win.getRealSpriteManager().getRealSprites()[getHitbox().getId()]);
 }
 
 
