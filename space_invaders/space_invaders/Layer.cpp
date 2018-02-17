@@ -12,4 +12,9 @@ namespace graphics {
 	{
 	}
 
+
+	std::map<int, sf::Sprite> Layer::getRealSprites()
+	{
+		return m_sprites;
+	}
 }
