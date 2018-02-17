@@ -42,6 +42,22 @@ int Game::update()
 	{
 		if (event.type == sf::Event::Closed)
 			m_window.close();
+		if (event.type == sf::Event::KeyPressed)
+		{
+			switch (event.key.code)
+			{
+			case sf::Keyboard::Right:
+				m_window.getRealCharacter().move(3, 0);
+				m_window.updateLayers();
+				break;
+			case sf::Keyboard::Left:
+				m_window.getRealCharacter().move(-3, 0);
+				m_window.updateLayers();
+				break;
+			default:
+				break;
+			}
+		}
 	}
 
 	return 0;
