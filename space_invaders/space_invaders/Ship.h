@@ -36,9 +36,15 @@ public:
 	/**
 	* \brief Gives the ship hitbox. Const method.
 	*
-	* \return physics::Hitbox position.
+	* \return physics::Hitbox ship hitbox.
 	*/
 	physics::Hitbox getHitbox() const;
+	/**
+	* \brief Gives a real reference to the hitbox.
+	*
+	* \return physics::Hitbox&  ship hitbox.
+	*/
+	physics::Hitbox &getRealHitbox();
 
 private:
 	sf::Vector2i m_position;

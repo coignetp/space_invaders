@@ -39,3 +39,9 @@ physics::Hitbox Ship::getHitbox() const
 {
 	return m_hitbox;
 }
+
+
+physics::Hitbox &Ship::getRealHitbox()
+{
+	return m_hitbox;
+}
