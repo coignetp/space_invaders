@@ -32,6 +32,8 @@ sf::Vector2i Ship::move(const int &dx, const int &dy)
 	m_position.x += dx;
 	m_position.y += dy;
 
+	getRealSprite()->setPosition(sf::Vector2f(getPosition()));
+
 	return m_position;
 }
 
