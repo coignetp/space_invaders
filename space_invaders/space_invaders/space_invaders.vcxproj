@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameWindow.cpp" />
+    <ClCompile Include="Hitbox.cpp" />
+    <ClCompile Include="HitboxManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Ressources.cpp" />
     <ClCompile Include="Ship.cpp" />
@@ -137,6 +139,8 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameWindow.h" />
+    <ClInclude Include="Hitbox.h" />
+    <ClInclude Include="HitboxManager.h" />
     <ClInclude Include="Ressources.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="SpriteManager.h" />
