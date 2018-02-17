@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML\Graphics.hpp>
+#include "Hitbox.h"
 
 class Ship
 {
@@ -32,7 +33,15 @@ public:
 	*/
 	sf::Vector2i move(const int &dx, const int &dy);
 
+	/**
+	* \brief Gives the ship hitbox. Const method.
+	*
+	* \return physics::Hitbox position.
+	*/
+	physics::Hitbox getHitbox() const;
+
 private:
 	sf::Vector2i m_position;
+	physics::Hitbox m_hitbox;
 };
 

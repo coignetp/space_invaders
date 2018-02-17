@@ -33,3 +33,9 @@ sf::Vector2i Ship::move(const int &dx, const int &dy)
 
 	return m_position;
 }
+
+
+physics::Hitbox Ship::getHitbox() const
+{
+	return m_hitbox;
+}
