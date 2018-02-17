@@ -16,7 +16,7 @@ namespace physics {
 		return m_hitboxes;
 	}
 
-	bool HitboxManager::areColliding(const Hitbox &h1, const Hitbox &h2)
+	bool HitboxManager::areColliding(const Hitbox &h1, const Hitbox &h2) const
 	{
 		if (h1.getId() == h2.getId())
 			return false;

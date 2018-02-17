@@ -22,7 +22,7 @@ namespace physics {
 		*
 		* \return true if they collide.
 		*/
-		bool areColliding(const Hitbox &h1, const Hitbox &h2);
+		bool areColliding(const Hitbox &h1, const Hitbox &h2) const;
 
 
 	private:
