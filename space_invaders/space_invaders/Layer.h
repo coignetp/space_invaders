@@ -1,6 +1,6 @@
 #pragma once
 
-#include <map>
+#include <deque>
 #include <SFML\Graphics.hpp>
 
 namespace graphics {
@@ -18,7 +18,7 @@ namespace graphics {
 		*
 		* \return the real sprites.
 		*/
-		std::map<int, sf::Sprite> getRealSprites();
+		std::deque<int> getRealSprites();
 
 		/**
 		* \brief Print the different sprites of the layer
@@ -30,7 +30,7 @@ namespace graphics {
 		int print(GameWindow &win);
 
 	private:
-		std::map<int, sf::Sprite> m_sprites;
+		std::deque<int> m_sprites;
 	};
 
 }

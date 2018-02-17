@@ -14,7 +14,7 @@ namespace graphics {
 	}
 
 
-	std::map<int, sf::Sprite> Layer::getRealSprites()
+	std::deque<int> Layer::getRealSprites()
 	{
 		return m_sprites;
 	}
@@ -22,9 +22,9 @@ namespace graphics {
 
 	int Layer::print(GameWindow &win)
 	{
-		for (std::pair<int, sf::Sprite> sp : m_sprites)
+		for (int sp : m_sprites)
 		{
-			win.draw(sp.second);
+			win.draw(win.getRealSpriteManager().getRealSprites()[sp]);
 		}
 
 		return 0;
