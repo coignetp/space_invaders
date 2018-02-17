@@ -3,7 +3,8 @@
 #include <memory>
 #include <SFML\Graphics.hpp>
 #include "Hitbox.h"
-#include "GameWindow.h"
+
+namespace graphics { class GameWindow;  }
 
 class Ship
 {
