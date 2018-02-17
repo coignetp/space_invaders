@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <memory>
 #include <SFML\Graphics.hpp>
 
 namespace graphics {
@@ -16,9 +17,9 @@ namespace graphics {
 		*
 		* \return std::map<int, sf::Sprite> sprites map
 		*/
-		std::map<int, sf::Sprite> &getRealSprites();
+		std::map<int, std::shared_ptr<sf::Sprite>> &getRealSprites();
 
 	private:
-		std::map<int, sf::Sprite> m_sprites;
+		std::map<int, std::shared_ptr<sf::Sprite>> m_sprites;
 	};
 }

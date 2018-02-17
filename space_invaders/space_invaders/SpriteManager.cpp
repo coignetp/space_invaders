@@ -11,7 +11,7 @@ namespace graphics {
 	{
 	}
 
-	std::map<int, sf::Sprite> &SpriteManager::getRealSprites()
+	std::map<int, std::shared_ptr<sf::Sprite>> &SpriteManager::getRealSprites()
 	{
 		return m_sprites;
 	}

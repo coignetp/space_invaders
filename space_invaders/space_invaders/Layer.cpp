@@ -24,7 +24,7 @@ namespace graphics {
 	{
 		for (int sp : m_sprites)
 		{
-			win.draw(win.getRealSpriteManager().getRealSprites()[sp]);
+			win.draw(*win.getRealSpriteManager().getRealSprites()[sp]);
 		}
 
 		return 0;
