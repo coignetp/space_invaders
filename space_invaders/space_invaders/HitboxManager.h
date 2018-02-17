@@ -11,11 +11,19 @@ namespace physics {
 		~HitboxManager();
 	public:
 		/**
-		* \brief Gives the real deque of hitboxes. T
+		* \brief Gives the real deque of hitboxes.
 		*
 		* \return std::deque<Hitbox> hitboxes.
 		*/
 		std::deque<Hitbox> &getRealHitboxes();
+		/**
+		* \brief Tells if 2 hitboxes are colliding. If the 2
+		* hitboxes have the same id it returns false.
+		*
+		* \return true if they collide.
+		*/
+		bool areColliding(const Hitbox &h1, const Hitbox &h2);
+
 
 	private:
 		std::deque<Hitbox> m_hitboxes;
