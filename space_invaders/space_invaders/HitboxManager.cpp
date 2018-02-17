@@ -23,4 +23,15 @@ namespace physics {
 
 		return h1.getRect().intersects(h2.getRect());
 	}
+
+	bool HitboxManager::isColliding(const Hitbox &h) const
+	{
+		for (const Hitbox &h2 : m_hitboxes)
+		{
+			if (areColliding(h, h2))
+				return true;
+		}
+
+		return false;
+	}
 }

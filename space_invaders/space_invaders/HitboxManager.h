@@ -23,6 +23,12 @@ namespace physics {
 		* \return true if they collide.
 		*/
 		bool areColliding(const Hitbox &h1, const Hitbox &h2) const;
+		/**
+		* \brief Tells if a hitboxe is colliding with others.
+		*
+		* \return true if it collides.
+		*/
+		bool isColliding(const Hitbox &h) const;
 
 
 	private:
