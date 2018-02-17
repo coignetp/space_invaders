@@ -35,6 +35,12 @@ namespace graphics {
 		* \return the real SpriteManager.
 		*/
 		SpriteManager& getRealSpriteManager();
+		/**
+		* \brief Real reference of the character.
+		*
+		* \return the real Character.
+		*/
+		Character& getRealCharacter();
 
 		/**
 		* \brief Print the different layers

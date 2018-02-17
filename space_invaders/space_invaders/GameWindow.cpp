@@ -45,6 +45,11 @@ namespace graphics {
 		return m_spriteManager;
 	}
 
+	Character& GameWindow::getRealCharacter()
+	{
+		return m_character;
+	}
+
 
 	int GameWindow::print()
 	{
