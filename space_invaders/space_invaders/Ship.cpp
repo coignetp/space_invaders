@@ -45,3 +45,9 @@ physics::Hitbox &Ship::getRealHitbox()
 {
 	return m_hitbox;
 }
+
+
+std::shared_ptr<sf::Sprite> &Ship::getRealSprite()
+{
+	return m_sprite;
+}

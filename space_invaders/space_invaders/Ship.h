@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <SFML\Graphics.hpp>
 #include "Hitbox.h"
 
@@ -46,8 +47,16 @@ public:
 	*/
 	physics::Hitbox &getRealHitbox();
 
+	/**
+	* \brief Gives a real reference to the sprite shared pointer.
+	*
+	* \return std::shared_ptr<sf::Sprite>& ship sprite pointer.
+	*/
+	std::shared_ptr<sf::Sprite> &getRealSprite();
+
 private:
 	sf::Vector2i m_position;
 	physics::Hitbox m_hitbox;
+	std::shared_ptr<sf::Sprite> m_sprite;
 };
 
