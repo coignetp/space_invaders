@@ -55,8 +55,6 @@ namespace graphics {
 	{
 		this->clear();
 
-		m_character.print(*this);
-
 		for (unsigned int i(0); i < m_layers.size() ; i++)
 			this->draw(sf::Sprite(m_layers.at(i).getTexture()));
 		
@@ -67,6 +65,7 @@ namespace graphics {
 
 	int GameWindow::updateLayers()
 	{
+		m_layers.at(WINDOW_LAYER_ITEM).clear();
 		m_character.print(*this);
 
 		return 0;
