@@ -132,6 +132,7 @@
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="HitboxManager.cpp" />
+    <ClCompile Include="Layer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Ressources.cpp" />
     <ClCompile Include="Ship.cpp" />
@@ -143,6 +144,7 @@
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="Hitbox.h" />
     <ClInclude Include="HitboxManager.h" />
+    <ClInclude Include="Layer.h" />
     <ClInclude Include="Ressources.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="SpriteManager.h" />
