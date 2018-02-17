@@ -57,7 +57,7 @@ std::shared_ptr<sf::Sprite> &Ship::getRealSprite()
 int Ship::print(graphics::GameWindow &win)
 {
 	getRealSprite()->setPosition(sf::Vector2f(getPosition()));
-	win.getRealLayers()[graphics::WINDOW_LAYER_ITEM].draw(*getRealSprite());
+	win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->addSprite(m_hitbox.getId());
 
 	return 0;
 }

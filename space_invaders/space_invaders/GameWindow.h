@@ -6,6 +6,7 @@
 #include "SpriteManager.h"
 #include "Ressources.h"
 #include "Character.h"
+#include "Layer.h"
 
 namespace graphics {
 
@@ -22,7 +23,7 @@ namespace graphics {
 		*
 		* \return the real std::vector<sf::RenderTexture>.
 		*/
-		std::vector<sf::RenderTexture>& getRealLayers();
+		std::vector<std::unique_ptr<Layer>>& getRealLayers();
 		/**
 		* \brief Real reference of the ressources.
 		*
@@ -56,7 +57,7 @@ namespace graphics {
 		int updateLayers();
 
 	private:
-		std::vector<sf::RenderTexture> m_layers;
+		std::vector<std::unique_ptr<Layer>> m_layers;
 		Ressources m_ressources;
 		SpriteManager m_spriteManager;
 		Character m_character;
