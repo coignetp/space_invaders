@@ -2,7 +2,8 @@
 #include "GameWindow.h"
 
 
-Ship::Ship()
+Ship::Ship() :
+	m_position(0, 0)
 {
 }
 
