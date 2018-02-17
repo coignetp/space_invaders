@@ -5,6 +5,7 @@
 
 #include "SpriteManager.h"
 #include "Ressources.h"
+#include "Character.h"
 
 namespace graphics {
 
@@ -45,6 +46,7 @@ namespace graphics {
 		std::vector<sf::RenderTexture> m_layers;
 		Ressources m_ressources;
 		SpriteManager m_spriteManager;
+		Character m_character;
 	};
 
 }
