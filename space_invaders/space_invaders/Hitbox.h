@@ -11,12 +11,19 @@ namespace physics {
 
 	public:
 		/**
-		* \brief Gives the real hitbox. The position depends
+		* \brief Gives the hitbox. The position depends
 		* on the screen.
 		*
 		* \return sf::Rect<int> hitbox.
 		*/
-		sf::Rect<int> getRealRect();
+		sf::Rect<int> getRect() const;
+		/**
+		* \brief Gives the real hitbox. The position depends
+		* on the screen.
+		*
+		* \return sf::Rect<int>& hitbox.
+		*/
+		sf::Rect<int> &getRealRect();
 		/**
 		* \brief Gives the unique hitbox id.
 		*

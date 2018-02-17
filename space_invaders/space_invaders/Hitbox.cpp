@@ -13,7 +13,12 @@ namespace physics {
 	{
 	}
 
-	sf::Rect<int> Hitbox::getRealRect()
+	sf::Rect<int> Hitbox::getRect() const
+	{
+		return m_rect;
+	}
+
+	sf::Rect<int>& Hitbox::getRealRect()
 	{
 		return m_rect;
 	}
