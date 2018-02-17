@@ -48,6 +48,13 @@ namespace graphics {
 		* \return an error code.
 		*/
 		int print();
+		/**
+		* \brief Update the layer concerned
+		*
+		* \return an error code.
+		*/
+		int updateLayers();
+
 	private:
 		std::vector<sf::RenderTexture> m_layers;
 		Ressources m_ressources;

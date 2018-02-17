@@ -64,4 +64,11 @@ namespace graphics {
 
 		return 0;
 	}
+
+	int GameWindow::updateLayers()
+	{
+		m_character.print(*this);
+
+		return 0;
+	}
 }
