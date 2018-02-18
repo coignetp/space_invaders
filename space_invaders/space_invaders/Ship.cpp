@@ -23,6 +23,8 @@ sf::Vector2i Ship::setPosition(const sf::Vector2i &pos)
 {
 	m_position = pos;
 
+	m_sprite->setPosition(sf::Vector2f(pos));
+
 	return m_position;
 }
 
