@@ -23,6 +23,9 @@ sf::Vector2i Ship::setPosition(const sf::Vector2i &pos)
 {
 	m_position = pos;
 
+	m_hitbox.getRealRect().left = pos.x;
+	m_hitbox.getRealRect().top = pos.y;
+
 	m_sprite->setPosition(sf::Vector2f(pos));
 
 	return m_position;
@@ -33,6 +36,9 @@ sf::Vector2i Ship::move(const int &dx, const int &dy)
 {
 	m_position.x += dx;
 	m_position.y += dy;
+
+	m_hitbox.getRealRect().left += dx;
+	m_hitbox.getRealRect().top += dy;
 
 	getRealSprite()->setPosition(sf::Vector2f(getPosition()));
 
