@@ -14,9 +14,17 @@ Character::Character(graphics::GameWindow &win)
 	));
 
 	setPosition(sf::Vector2i(
-		(win.getSize().x - getRealSprite()->getLocalBounds().width) / 2,
-		win.getSize().y - getRealSprite()->getLocalBounds().height
+		(int)(win.getSize().x - getRealSprite()->getLocalBounds().width) / 2,
+		(int)(win.getSize().y - getRealSprite()->getLocalBounds().height)
 	));
+
+	// Initiate the hitbox
+	getRealHitbox().getRealRect() = sf::Rect<int>(
+		(int)(getPosition().x + getRealSprite()->getLocalBounds().width/4),
+		(int)getPosition().y,
+		(int)getRealSprite()->getLocalBounds().width / 2,
+		(int)getRealSprite()->getLocalBounds().height
+	);
 }
 
 
