@@ -47,10 +47,10 @@ int Game::update()
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Right:
-				m_window.getRealCharacter().move(3, 0);
+				m_window.getRealCharacter().move(5, 0, sf::Vector2i(m_window.getSize()));
 				break;
 			case sf::Keyboard::Left:
-				m_window.getRealCharacter().move(-3, 0);
+				m_window.getRealCharacter().move(-5, 0, sf::Vector2i(m_window.getSize()));
 				break;
 			default:
 				break;

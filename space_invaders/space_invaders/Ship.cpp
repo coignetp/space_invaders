@@ -32,15 +32,22 @@ sf::Vector2i Ship::setPosition(const sf::Vector2i &pos)
 }
 
 
-sf::Vector2i Ship::move(const int &dx, const int &dy)
+sf::Vector2i Ship::move(const int &dx, const int &dy, const sf::Vector2i &wall)
 {
-	m_position.x += dx;
-	m_position.y += dy;
+	if ((wall.x == -1 && wall.y == -1)
+		||    (m_hitbox.getRealRect().left + dx >= 0
+			&& m_hitbox.getRealRect().left + m_hitbox.getRealRect().width + dx <= wall.x
+			&& m_hitbox.getRealRect().top + dy >= 0
+			&& m_hitbox.getRealRect().top + m_hitbox.getRealRect().height + dy <= wall.y))
+	{
+		m_position.x += dx;
+		m_position.y += dy;
 
-	m_hitbox.getRealRect().left += dx;
-	m_hitbox.getRealRect().top += dy;
+		m_hitbox.getRealRect().left += dx;
+		m_hitbox.getRealRect().top += dy;
 
-	getRealSprite()->setPosition(sf::Vector2f(getPosition()));
+		getRealSprite()->setPosition(sf::Vector2f(getPosition()));
+	}
 
 	return m_position;
 }

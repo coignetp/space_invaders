@@ -34,7 +34,7 @@ public:
 	*
 	* \return sf::Vector2i new position.
 	*/
-	sf::Vector2i move(const int &dx, const int &dy);
+	sf::Vector2i move(const int &dx, const int &dy, const sf::Vector2i &wall);
 
 	/**
 	* \brief Gives the ship hitbox. Const method.
