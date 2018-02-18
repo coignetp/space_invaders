@@ -12,6 +12,11 @@ Character::Character(graphics::GameWindow &win)
 		getHitbox().getId(),
 		this->getRealSprite()
 	));
+
+	setPosition(sf::Vector2i(
+		(win.getSize().x - getRealSprite()->getLocalBounds().width) / 2,
+		win.getSize().y - getRealSprite()->getLocalBounds().height
+	));
 }
 
 
