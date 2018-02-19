@@ -3,7 +3,8 @@
 
 
 Ship::Ship() :
-	m_position(0, 0)
+	m_position(0, 0),
+	m_lastUpdate()
 {
 }
 
@@ -29,6 +30,20 @@ sf::Vector2i Ship::setPosition(const sf::Vector2i &pos)
 	m_sprite->setPosition(sf::Vector2f(pos));
 
 	return m_position;
+}
+
+
+sf::Vector2f Ship::getSpeed() const
+{
+	return m_speed;
+}
+
+
+sf::Vector2f Ship::setSpeed(const sf::Vector2f &speed)
+{
+	m_speed = speed;
+
+	return m_speed;
 }
 
 
@@ -77,4 +92,17 @@ int Ship::print(graphics::GameWindow &win)
 	win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->addSprite(m_hitbox.getId());
 
 	return 0;
+}
+
+
+void Ship::update(const sf::Time &t, const sf::Vector2i &wall)
+{
+	if(m_speed.x != 0 || m_speed.y != 0)
+		m_lastUpdate += t;
+	if (m_lastUpdate.asSeconds()*m_speed.x >= 1 || m_lastUpdate.asSeconds()*m_speed.y >= 1
+		|| m_lastUpdate.asSeconds()*m_speed.x <= -1 || m_lastUpdate.asSeconds()*m_speed.y <= -1)
+	{
+		move((int)(m_lastUpdate.asSeconds()*m_speed.x), (int)(m_lastUpdate.asSeconds()*m_speed.y), wall);
+		m_lastUpdate = sf::Time();
+	}
 }
