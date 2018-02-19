@@ -21,6 +21,7 @@ graphics::GameWindow& Game::getRealWindow()
 
 int Game::start()
 {
+	m_clock.restart();
 	while (m_window.isOpen())
 	{
 		int ret = update();
@@ -47,16 +48,30 @@ int Game::update()
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Right:
-				m_window.getRealCharacter().move(5, 0, sf::Vector2i(m_window.getSize()));
+				m_window.getRealCharacter().setSpeed(sf::Vector2f(1000.0, 0.0));
 				break;
 			case sf::Keyboard::Left:
-				m_window.getRealCharacter().move(-5, 0, sf::Vector2i(m_window.getSize()));
+				m_window.getRealCharacter().setSpeed(sf::Vector2f(-1000.0, 0.0));
+				break;
+			default:
+				break;
+			}
+		}
+		if (event.type == sf::Event::KeyReleased)
+		{
+			switch (event.key.code)
+			{
+			case sf::Keyboard::Right:
+			case sf::Keyboard::Left:
+				m_window.getRealCharacter().setSpeed(sf::Vector2f(0.0, 0.0));
 				break;
 			default:
 				break;
 			}
 		}
 	}
+	m_window.getRealCharacter().update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()));
+	m_clock.restart();
 
 	return 0;
 }

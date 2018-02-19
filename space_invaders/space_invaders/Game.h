@@ -33,5 +33,6 @@ public:
 
 private:
 	graphics::GameWindow m_window;
+	sf::Clock m_clock;
 };
 
