@@ -1,8 +1,10 @@
 #include "Missile.h"
 #include "GameWindow.h"
 
+int MISSILE_ID(0);
 
-Missile::Missile(graphics::GameWindow &win, const sf::Vector2i &pos)
+Missile::Missile(graphics::GameWindow &win, const sf::Vector2i &pos) :
+	m_id(MISSILE_ID++)
 {
 	this->getRealSprite() = std::make_shared<sf::Sprite>(
 		sf::Sprite(*win.getRealRessources().getRealTextures()[graphics::RESS_MISSILE])
@@ -32,6 +34,12 @@ Missile::~Missile()
 bool Missile::getToDelete() const
 {
 	return m_toDelete;
+}
+
+
+int Missile::getId() const
+{
+	return m_id;
 }
 
 

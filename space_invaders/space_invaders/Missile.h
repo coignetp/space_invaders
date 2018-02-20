@@ -17,6 +17,12 @@ public:
 	*/
 	bool getToDelete() const;
 	/**
+	* \brief Gives the unique missile id.
+	*
+	* \return int id.
+	*/
+	int getId() const;
+	/**
 	* \brief Updates the entity position according to the speed.
 	*
 	* \param t : time since the last update call
@@ -28,5 +34,6 @@ public:
 
 private:
 	bool m_toDelete;
+	int m_id;
 };
 
