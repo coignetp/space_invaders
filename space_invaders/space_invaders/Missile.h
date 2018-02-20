@@ -6,7 +6,7 @@ class Missile :
 	public Entity
 {
 public:
-	Missile();
+	Missile(graphics::GameWindow &win, const sf::Vector2i &pos);
 	~Missile();
 };
 
