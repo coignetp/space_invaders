@@ -21,7 +21,7 @@ namespace graphics {
 
 	int Ressources::load()
 	{
-		std::vector<std::string> filenames{ "data/bg.jpg", "data/me.png", "data/enemi.png" };
+		std::vector<std::string> filenames{ "data/bg.jpg", "data/me.png", "data/enemi.png", "data/missile.bmp" };
 
 		try {
 			for (unsigned int i(0); i < filenames.size(); i++)

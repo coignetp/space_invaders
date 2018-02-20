@@ -4,7 +4,7 @@
 #include <memory>
 
 namespace graphics {
-	enum RESS_INDEX {RESS_BACKGROUND, RESS_ME, RESS_ENEMI, RESS_TOTAL};
+	enum RESS_INDEX {RESS_BACKGROUND, RESS_ME, RESS_ENEMI, RESS_MISSILE, RESS_TOTAL};
 	class Ressources
 	{
 	public:
