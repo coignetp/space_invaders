@@ -85,7 +85,7 @@ public:
 	*
 	* \return nothing
 	*/
-	void update(const sf::Time &t, const sf::Vector2i &wall);
+	virtual void update(const sf::Time &t, const sf::Vector2i &wall);
 
 private:
 	sf::Vector2i m_position;
