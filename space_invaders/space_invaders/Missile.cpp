@@ -27,3 +27,18 @@ Missile::Missile(graphics::GameWindow &win, const sf::Vector2i &pos)
 Missile::~Missile()
 {
 }
+
+
+bool Missile::getToDelete() const
+{
+	return m_toDelete;
+}
+
+
+void Missile::update(const sf::Time &t, const sf::Vector2i &wall)
+{
+	Entity::update(t, wall);
+
+	if (getPosition().y <= 0)
+		m_toDelete = true;
+}
