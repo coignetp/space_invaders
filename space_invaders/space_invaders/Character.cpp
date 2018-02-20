@@ -31,3 +31,9 @@ Character::Character(graphics::GameWindow &win)
 Character::~Character()
 {
 }
+
+
+std::map<int, Missile> &Character::getRealMissiles()
+{
+	return m_missiles;
+}
