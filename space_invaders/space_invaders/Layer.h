@@ -18,7 +18,7 @@ namespace graphics {
 		*
 		* \return the real sprites.
 		*/
-		std::deque<int> getRealSprites();
+		std::deque<int> &getRealSprites();
 
 		/**
 		* \brief Print the different sprites of the layer

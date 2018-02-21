@@ -14,7 +14,7 @@ namespace graphics {
 	}
 
 
-	std::deque<int> Layer::getRealSprites()
+	std::deque<int>& Layer::getRealSprites()
 	{
 		return m_sprites;
 	}
