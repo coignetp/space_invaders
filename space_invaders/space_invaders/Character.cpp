@@ -39,6 +39,22 @@ std::map<int, std::shared_ptr<Missile>> &Character::getRealMissiles()
 }
 
 
+float Character::getRateOfFire() const
+{
+	return m_rateOfFire;
+}
+
+
+float Character::setRateOfFire(const float &rate)
+{
+	if (rate < 0)
+		return m_rateOfFire;
+	m_rateOfFire = rate;
+
+	return m_rateOfFire;
+}
+
+
 void Character::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win)
 {
 	Entity::update(t, wall, win);
