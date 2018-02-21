@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include "GameWindow.h"
+#include "Layer.h"
 
 
 Entity::Entity() :
@@ -95,7 +96,37 @@ int Entity::print(graphics::GameWindow &win)
 }
 
 
-void Entity::update(const sf::Time &t, const sf::Vector2i &wall)
+int Entity::erase(graphics::GameWindow &win)
+{
+	/*win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().erase(
+		std::remove(
+			win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().begin(),
+			win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().end(), 
+			m_hitbox.getId()), 
+		win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().end()
+	);*/
+	/*std::deque<int>::iterator it(win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().begin());
+	while (it != win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().end())
+	*/
+
+	for(unsigned int i(0) ; i < win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().size(); i++)
+	{
+		if (win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites()[i] == m_hitbox.getId())
+		{
+			win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().erase(
+				win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().begin() + i
+			);
+		}
+	}
+
+	/*win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites()[1] = 3;
+	win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->addSprite(0);*/
+
+	return -1;
+}
+
+
+void Entity::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win)
 {
 	if (m_speed.x != 0 || m_speed.y != 0)
 		m_lastUpdate += t;

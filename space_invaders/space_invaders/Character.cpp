@@ -33,7 +33,27 @@ Character::~Character()
 }
 
 
-std::map<int, Missile> &Character::getRealMissiles()
+std::map<int, std::shared_ptr<Missile>> &Character::getRealMissiles()
 {
 	return m_missiles;
+}
+
+
+void Character::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win)
+{
+	Entity::update(t, wall, win);
+	std::map<int, std::shared_ptr<Missile>>::iterator it(m_missiles.begin());
+
+	while (it != m_missiles.end())
+	{
+		it->second->update(t, wall, win);
+
+		if (it->second->getToDelete())
+		{
+			it->second->erase(win);
+			it = m_missiles.erase(it);
+		}
+		else
+			++it;
+	}
 }

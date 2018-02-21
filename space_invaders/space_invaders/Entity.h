@@ -78,6 +78,14 @@ public:
 	*/
 	int print(graphics::GameWindow &win);
 	/**
+	* \brief Erases the entity on the screen
+	*
+	* \param win : the window
+	*
+	* \return int error code
+	*/
+	int erase(graphics::GameWindow &win);
+	/**
 	* \brief Updates the entity position according to the speed.
 	*
 	* \param t : time since the last update call
@@ -85,7 +93,7 @@ public:
 	*
 	* \return nothing
 	*/
-	virtual void update(const sf::Time &t, const sf::Vector2i &wall);
+	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win);
 
 private:
 	sf::Vector2i m_position;

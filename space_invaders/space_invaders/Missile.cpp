@@ -4,7 +4,8 @@
 int MISSILE_ID(0);
 
 Missile::Missile(graphics::GameWindow &win, const sf::Vector2i &pos) :
-	m_id(MISSILE_ID++)
+	m_id(MISSILE_ID++),
+	m_toDelete(false)
 {
 	this->getRealSprite() = std::make_shared<sf::Sprite>(
 		sf::Sprite(*win.getRealRessources().getRealTextures()[graphics::RESS_MISSILE])
@@ -23,6 +24,8 @@ Missile::Missile(graphics::GameWindow &win, const sf::Vector2i &pos) :
 		(int)getRealSprite()->getLocalBounds().width,
 		(int)getRealSprite()->getLocalBounds().height
 	);
+
+	print(win);
 }
 
 
@@ -43,10 +46,10 @@ int Missile::getId() const
 }
 
 
-void Missile::update(const sf::Time &t, const sf::Vector2i &wall)
+void Missile::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win)
 {
-	Entity::update(t, wall);
+	Entity::update(t, wall, win);
 
-	if (getPosition().y <= 0)
+	if (getPosition().y <= 32)
 		m_toDelete = true;
 }

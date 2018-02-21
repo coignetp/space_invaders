@@ -18,9 +18,18 @@ public:
 	*
 	* \return std::map<int, Missile> missiles
 	*/
-	std::map<int, Missile> &getRealMissiles();
+	std::map<int, std::shared_ptr<Missile>> &getRealMissiles();
+	/**
+	* \brief Updates the entity position according to the speed.
+	*
+	* \param t : time since the last update call
+	* \param wall : screen border
+	*
+	* \return nothing
+	*/
+	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win);
 
 private:
-	std::map<int, Missile> m_missiles;
+	std::map<int, std::shared_ptr<Missile>> m_missiles;
 };
 

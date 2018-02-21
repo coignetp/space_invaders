@@ -30,7 +30,7 @@ public:
 	*
 	* \return nothing
 	*/
-	virtual void update(const sf::Time &t, const sf::Vector2i &wall);
+	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win);
 
 private:
 	bool m_toDelete;
