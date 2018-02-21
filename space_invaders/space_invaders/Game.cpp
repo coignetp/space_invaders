@@ -1,6 +1,8 @@
 #include "Game.h"
 
 
+extern int MISSILE_ID;
+
 
 Game::Game(sf::VideoMode vid, const sf::String &title, sf::Uint32 style, const sf::ContextSettings &settings) :
 	m_window(vid, title, style, settings)
@@ -53,6 +55,15 @@ int Game::update()
 			case sf::Keyboard::Left:
 				m_window.getRealCharacter().setSpeed(sf::Vector2f(-1000.0, 0.0));
 				break;
+			case sf::Keyboard::Space:
+				m_window.getRealCharacter().getRealMissiles().insert(std::make_pair(
+					MISSILE_ID, std::make_shared<Missile>(Missile(m_window, sf::Vector2i(
+						m_window.getRealCharacter().getPosition().x + (int)(m_window.getRealCharacter().getRealSprite()->getLocalBounds().width / 2),
+						m_window.getRealCharacter().getPosition().y + 3
+					))))
+				);
+				m_window.getRealCharacter().getRealMissiles().at(MISSILE_ID)->setSpeed(sf::Vector2f(0.0, -800.0));
+				break;
 			default:
 				break;
 			}
@@ -70,7 +81,7 @@ int Game::update()
 			}
 		}
 	}
-	m_window.getRealCharacter().update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()));
+	m_window.getRealCharacter().update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()), m_window);
 	m_clock.restart();
 
 	return 0;
