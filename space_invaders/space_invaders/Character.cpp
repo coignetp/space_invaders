@@ -3,7 +3,10 @@
 #include "GameWindow.h"
 
 
-Character::Character(graphics::GameWindow &win)
+extern int MISSILE_ID;
+
+Character::Character(graphics::GameWindow &win) :
+	m_rateOfFire(0)
 {
 	this->getRealSprite() = std::make_shared<sf::Sprite>(
 		sf::Sprite(*win.getRealRessources().getRealTextures()[graphics::RESS_ME])
@@ -58,6 +61,21 @@ float Character::setRateOfFire(const float &rate)
 void Character::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win)
 {
 	Entity::update(t, wall, win);
+	if (m_rateOfFire != 0)
+		m_lastUpdateMissile += t;
+
+	if (m_lastUpdateMissile.asSeconds()*m_rateOfFire >= 1)
+	{
+		getRealMissiles().insert(std::make_pair(
+			MISSILE_ID, std::make_shared<Missile>(Missile(win, sf::Vector2i(
+				getPosition().x + (int)(getRealSprite()->getLocalBounds().width / 2),
+				getPosition().y + 3
+			))))
+		);
+		getRealMissiles().at(MISSILE_ID)->setSpeed(sf::Vector2f(0.0, -800.0));
+		m_lastUpdateMissile = sf::Time();
+	}
+
 	std::map<int, std::shared_ptr<Missile>>::iterator it(m_missiles.begin());
 
 	while (it != m_missiles.end())

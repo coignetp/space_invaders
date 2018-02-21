@@ -46,5 +46,6 @@ public:
 private:
 	std::map<int, std::shared_ptr<Missile>> m_missiles;
 	float m_rateOfFire;
+	sf::Time m_lastUpdateMissile;
 };
 
