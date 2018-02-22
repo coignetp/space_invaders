@@ -7,7 +7,7 @@ Enemi::Enemi(const sf::Rect<int> &walls, graphics::GameWindow &win) :
 {
 	this->getRealSprite() = std::make_shared<sf::Sprite>(
 		sf::Sprite(*win.getRealRessources().getRealTextures()[graphics::RESS_ENEMI])
-		);
+	);
 	win.getRealSpriteManager().getRealSprites().insert(std::make_pair(
 		getHitbox().getId(),
 		this->getRealSprite()
