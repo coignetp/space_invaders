@@ -6,7 +6,7 @@ class Enemi :
 	public Ship
 {
 public:
-	Enemi(const sf::Rect<int> &walls);
+	Enemi(const sf::Rect<int> &walls, graphics::GameWindow &win);
 	~Enemi();
 
 public:
