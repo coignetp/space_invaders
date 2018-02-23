@@ -48,13 +48,13 @@ sf::Vector2f Entity::setSpeed(const sf::Vector2f &speed)
 }
 
 
-sf::Vector2i Entity::move(const int &dx, const int &dy, const sf::Vector2i &wall)
+sf::Vector2i Entity::move(const int &dx, const int &dy, const sf::Rect<int> &wall)
 {
-	if ((wall.x == -1 && wall.y == -1)
-		|| (m_hitbox.getRealRect().left + dx >= 0
-			&& m_hitbox.getRealRect().left + m_hitbox.getRealRect().width + dx <= wall.x
-			&& m_hitbox.getRealRect().top + dy >= 0
-			&& m_hitbox.getRealRect().top + m_hitbox.getRealRect().height + dy <= wall.y))
+	if ((wall.left == -1 && wall.top == -1)
+		|| (m_hitbox.getRealRect().left + dx >= wall.left
+			&& m_hitbox.getRealRect().left + m_hitbox.getRealRect().width + dx <= wall.left + wall.width
+			&& m_hitbox.getRealRect().top + dy >= wall.top
+			&& m_hitbox.getRealRect().top + m_hitbox.getRealRect().height + dy <= wall.top + wall.height))
 	{
 		m_position.x += dx;
 		m_position.y += dy;
@@ -133,7 +133,8 @@ void Entity::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameW
 	if (m_lastUpdate.asSeconds()*m_speed.x >= 1 || m_lastUpdate.asSeconds()*m_speed.y >= 1
 		|| m_lastUpdate.asSeconds()*m_speed.x <= -1 || m_lastUpdate.asSeconds()*m_speed.y <= -1)
 	{
-		move((int)(m_lastUpdate.asSeconds()*m_speed.x), (int)(m_lastUpdate.asSeconds()*m_speed.y), wall);
+		move((int)(m_lastUpdate.asSeconds()*m_speed.x), (int)(m_lastUpdate.asSeconds()*m_speed.y), 
+			sf::Rect<int>(begWall.x, begWall.y, begWall.x + wall.x, begWall.y + wall.y));
 		m_lastUpdate = sf::Time();
 	}
 }

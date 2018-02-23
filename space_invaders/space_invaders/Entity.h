@@ -49,7 +49,7 @@ public:
 	*
 	* \return sf::Vector2i new position.
 	*/
-	sf::Vector2i move(const int &dx, const int &dy, const sf::Vector2i &wall);
+	sf::Vector2i move(const int &dx, const int &dy, const sf::Rect<int> &wall);
 
 	/**
 	* \brief Gives the entity hitbox. Const method.
