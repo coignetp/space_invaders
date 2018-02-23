@@ -1,5 +1,6 @@
 #include "Enemi.h"
 #include "GameWindow.h"
+#include <random>
 
 
 Enemi::Enemi(const sf::Rect<int> &walls, graphics::GameWindow &win) :
@@ -17,6 +18,8 @@ Enemi::Enemi(const sf::Rect<int> &walls, graphics::GameWindow &win) :
 		walls.left,
 		walls.top
 	));
+
+	setRateOfFire(10.0);
 
 	// Initiate the hitbox
 	getRealHitbox().getRealRect() = sf::Rect<int>(
@@ -49,5 +52,8 @@ sf::Rect<int> Enemi::setWalls(const sf::Rect<int> &walls)
 
 void Enemi::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall)
 {
-	Ship::update(t, wall, win, begWall);
+	std::default_random_engine generator;
+	std::uniform_int_distribution<int> distribution(0, 1000);
+
+	Ship::update(t+sf::microseconds(distribution(generator)), wall, win, begWall);
 }
