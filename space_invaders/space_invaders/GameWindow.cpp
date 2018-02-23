@@ -49,6 +49,10 @@ namespace graphics {
 		return m_character;
 	}
 
+	std::list<Enemi>& GameWindow::getRealEnemis()
+	{
+		return m_enemis;
+	}
 
 	int GameWindow::print()
 	{

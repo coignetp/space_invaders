@@ -2,7 +2,9 @@
 #include <SFML\Main.hpp>
 #include <SFML\System.hpp>
 #include <SFML\Graphics.hpp>
+#include <list>
 
+#include "Enemi.h"
 #include "SpriteManager.h"
 #include "Ressources.h"
 #include "Character.h"
@@ -42,6 +44,12 @@ namespace graphics {
 		* \return the real Character.
 		*/
 		Character& getRealCharacter();
+		/**
+		* \brief Real reference of the enemis.
+		*
+		* \return the real std::list<Enemi>.
+		*/
+		std::list<Enemi>& getRealEnemis();
 
 		/**
 		* \brief Print the different layers
@@ -55,6 +63,7 @@ namespace graphics {
 		Ressources m_ressources;
 		SpriteManager m_spriteManager;
 		Character m_character;
+		std::list<Enemi> m_enemis;
 	};
 
 }
