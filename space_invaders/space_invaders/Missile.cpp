@@ -48,7 +48,7 @@ int Missile::getId() const
 
 void Missile::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall)
 {
-	Entity::update(t, wall, win);
+	Entity::update(t, wall, win, begWall);
 
 	if (getPosition().y <= 32)
 		m_toDelete = true;

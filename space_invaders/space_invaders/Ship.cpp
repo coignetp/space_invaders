@@ -40,7 +40,7 @@ float Ship::setRateOfFire(const float &rate)
 
 void Ship::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall)
 {
-	Entity::update(t, wall, win);
+	Entity::update(t, wall, win, begWall);
 	if (m_rateOfFire != 0)
 		m_lastUpdateMissile += t;
 

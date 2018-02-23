@@ -49,5 +49,5 @@ sf::Rect<int> Enemi::setWalls(const sf::Rect<int> &walls)
 
 void Enemi::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall)
 {
-	Ship::update(t, wall, win);
+	Ship::update(t, wall, win, begWall);
 }
