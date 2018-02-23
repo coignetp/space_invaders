@@ -126,7 +126,7 @@ int Entity::erase(graphics::GameWindow &win)
 }
 
 
-void Entity::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win)
+void Entity::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall)
 {
 	if (m_speed.x != 0 || m_speed.y != 0)
 		m_lastUpdate += t;

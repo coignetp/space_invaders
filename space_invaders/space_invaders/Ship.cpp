@@ -38,7 +38,7 @@ float Ship::setRateOfFire(const float &rate)
 }
 
 
-void Ship::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win)
+void Ship::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall)
 {
 	Entity::update(t, wall, win);
 	if (m_rateOfFire != 0)

@@ -46,7 +46,7 @@ int Missile::getId() const
 }
 
 
-void Missile::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win)
+void Missile::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall)
 {
 	Entity::update(t, wall, win);
 

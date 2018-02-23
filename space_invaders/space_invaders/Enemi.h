@@ -24,6 +24,16 @@ public:
 	* \return sf::Rect<int> new walls
 	*/
 	sf::Rect<int> setWalls(const sf::Rect<int> &walls);
+	/**
+	* \brief Updates the entity position according to the speed.
+	*
+	* \param t : time since the last update call
+	* \param wall : screen border
+	*
+	* \return nothing
+	*/
+	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall = sf::Vector2i(0, 0));
+
 private:
 	sf::Rect<int> m_walls;
 };
