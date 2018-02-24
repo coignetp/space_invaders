@@ -9,10 +9,16 @@ Enemi::Enemi(const sf::Rect<int> &walls, graphics::GameWindow &win) :
 	this->getRealSprite() = std::make_shared<sf::Sprite>(
 		sf::Sprite(*win.getRealRessources().getRealTextures()[graphics::RESS_ENEMI])
 	);
+	this->getRealSprite()->setScale(
+		(float)(64/ this->getRealSprite()->getLocalBounds().width),
+		(float)(64/ this->getRealSprite()->getLocalBounds().height)
+	);
 	win.getRealSpriteManager().getRealSprites().insert(std::make_pair(
 		getHitbox().getId(),
 		this->getRealSprite()
 	));
+
+	
 
 	setPosition(sf::Vector2i(
 		walls.left,
@@ -25,8 +31,8 @@ Enemi::Enemi(const sf::Rect<int> &walls, graphics::GameWindow &win) :
 	getRealHitbox().getRealRect() = sf::Rect<int>(
 		(int)walls.left,
 		(int)walls.top,
-		(int)walls.width,
-		(int)walls.height
+		(int)this->getRealSprite()->getGlobalBounds().width,
+		(int)this->getRealSprite()->getGlobalBounds().height
 	);
 }
 
