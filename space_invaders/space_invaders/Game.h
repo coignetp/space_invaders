@@ -31,6 +31,13 @@ public:
 	*/
 	int update();
 
+	/**
+	* \brief Makes a new level with new enemis
+	* 
+	* \return nothing
+	*/
+	void newLevel(const int &nbW, const int &nbH);
+
 private:
 	graphics::GameWindow m_window;
 	sf::Clock m_clock;
