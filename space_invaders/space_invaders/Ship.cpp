@@ -6,7 +6,8 @@ extern int MISSILE_ID;
 
 Ship::Ship() :
 	Entity(),
-	m_rateOfFire(0)
+	m_rateOfFire(0),
+	m_missileSpeed(0)
 {
 }
 
@@ -52,7 +53,7 @@ void Ship::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWin
 				getPosition().y + 3
 			))))
 		);
-		getRealMissiles().at(MISSILE_ID)->setSpeed(sf::Vector2f(0.0, -800.0));
+		getRealMissiles().at(MISSILE_ID)->setSpeed(sf::Vector2f(0.0, m_missileSpeed));
 		m_lastUpdateMissile = sf::Time();
 	}
 

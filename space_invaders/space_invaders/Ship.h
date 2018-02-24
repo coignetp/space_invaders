@@ -42,6 +42,9 @@ public:
 	*/
 	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall = sf::Vector2i(0, 0));
 
+protected:
+	float m_missileSpeed;
+
 private:
 	std::map<int, std::shared_ptr<Missile>> m_missiles;
 	float m_rateOfFire;

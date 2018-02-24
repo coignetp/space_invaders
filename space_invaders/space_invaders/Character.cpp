@@ -25,6 +25,7 @@ Character::Character(graphics::GameWindow &win)
 		(int)getRealSprite()->getLocalBounds().width / 2,
 		(int)getRealSprite()->getLocalBounds().height
 	);
+	m_missileSpeed = -800.0;
 }
 
 

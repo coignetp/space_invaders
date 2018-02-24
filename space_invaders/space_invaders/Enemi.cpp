@@ -25,7 +25,7 @@ Enemi::Enemi(const sf::Rect<int> &walls, graphics::GameWindow &win) :
 		walls.top
 	));
 
-	setRateOfFire(10.0);
+	setRateOfFire(0.1);
 
 	// Initiate the hitbox
 	getRealHitbox().getRealRect() = sf::Rect<int>(
@@ -34,6 +34,8 @@ Enemi::Enemi(const sf::Rect<int> &walls, graphics::GameWindow &win) :
 		(int)this->getRealSprite()->getGlobalBounds().width,
 		(int)this->getRealSprite()->getGlobalBounds().height
 	);
+
+	m_missileSpeed = 800.0;
 }
 
 
