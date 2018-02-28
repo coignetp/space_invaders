@@ -62,8 +62,33 @@ sf::Vector2i Entity::move(const int &dx, const int &dy, const sf::Rect<int> &wal
 		m_hitbox.getRealRect().left += dx;
 		m_hitbox.getRealRect().top += dy;
 
-		getRealSprite()->setPosition(sf::Vector2f(getPosition()));
 	}
+	else
+	{
+		if (m_hitbox.getRealRect().left + dx < wall.left && dx < 0)
+		{
+			m_position.x -= (m_hitbox.getRealRect().left - wall.left);
+			m_hitbox.getRealRect().left = wall.left;
+		}
+		if (m_hitbox.getRealRect().left + m_hitbox.getRealRect().width + dx > wall.left + wall.width && dx > 0)
+		{
+			m_position.x += (wall.left + wall.width -m_hitbox.getRealRect().width - m_hitbox.getRealRect().left);
+			m_hitbox.getRealRect().left = wall.left + wall.width - m_hitbox.getRealRect().width;
+		}
+
+		if (m_hitbox.getRealRect().top + dy < wall.top && dy < 0)
+		{
+			m_position.y -= (m_hitbox.getRealRect().top - wall.top);
+			m_hitbox.getRealRect().top = wall.top;
+		}
+		if (m_hitbox.getRealRect().top + m_hitbox.getRealRect().height + dy > wall.top + wall.height && dy > 0)
+		{
+			m_position.y += (wall.top + wall.height - m_hitbox.getRealRect().height - m_hitbox.getRealRect().top);
+			m_hitbox.getRealRect().top = wall.top + wall.height - m_hitbox.getRealRect().height;
+		}
+	
+	}
+	getRealSprite()->setPosition(sf::Vector2f(getPosition()));
 
 	return m_position;
 }
