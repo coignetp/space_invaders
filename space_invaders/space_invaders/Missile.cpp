@@ -3,7 +3,8 @@
 
 int MISSILE_ID(0);
 
-Missile::Missile(graphics::GameWindow &win, const sf::Vector2i &pos) :
+Missile::Missile(physics::HitboxManager &hitboxManager, graphics::GameWindow &win, const sf::Vector2i &pos) :
+	Entity(hitboxManager),
 	m_id(MISSILE_ID++),
 	m_toDelete(false)
 {
@@ -46,9 +47,9 @@ int Missile::getId() const
 }
 
 
-void Missile::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall)
+void Missile::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, physics::HitboxManager &hitboxManager, const sf::Vector2i &begWall)
 {
-	Entity::update(t, wall, win, begWall);
+	Entity::update(t, wall, win, hitboxManager, begWall);
 
 	if (getPosition().y <= 0 || getPosition().y + getHitbox().getRect().height >= 800)
 		m_toDelete = true;

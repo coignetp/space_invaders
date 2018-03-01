@@ -5,7 +5,7 @@ extern int MISSILE_ID;
 
 
 Game::Game(sf::VideoMode vid, const sf::String &title, sf::Uint32 style, const sf::ContextSettings &settings) :
-	m_window(vid, title, style, settings)
+	m_window(vid, title, style, settings, m_hitboxManager)
 {
 }
 
@@ -87,10 +87,10 @@ int Game::update()
 			}
 		}
 	}
-	m_window.getRealCharacter().update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()), m_window);
+	m_window.getRealCharacter().update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()), m_window, m_hitboxManager);
 
 	for (std::list<Enemi>::iterator it(m_window.getRealEnemis().begin()); it != m_window.getRealEnemis().end(); it++)
-		it->update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()), m_window);
+		it->update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()),m_window, m_hitboxManager);
 
 	updateCollisions();
 
@@ -116,7 +116,7 @@ void Game::newLevel(const int &nbW, const int &nbH)
 	{
 		for (int j(0); j < nbW; j++)
 		{
-			m_window.getRealEnemis().push_back(Enemi(sf::Rect<int>(wgap*j, i*80, (1024/2)+64, 600), m_window));
+			m_window.getRealEnemis().push_back(Enemi(m_hitboxManager, sf::Rect<int>(wgap*j, i*80, (1024/2)+64, 600), m_window));
 			m_window.getRealEnemis().back().print(m_window);
 			m_window.getRealEnemis().back().setSpeed(sf::Vector2f(50, 0));
 		}

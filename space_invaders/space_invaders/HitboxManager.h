@@ -1,6 +1,7 @@
 #pragma once
 
 #include <deque>
+#include <memory>
 #include "Hitbox.h"
 
 namespace physics {
@@ -15,7 +16,7 @@ namespace physics {
 		*
 		* \return std::deque<Hitbox> hitboxes.
 		*/
-		std::deque<Hitbox> &getRealHitboxes();
+		std::deque<std::shared_ptr<Hitbox>> &getRealHitboxes();
 		/**
 		* \brief Tells if 2 hitboxes are colliding. If the 2
 		* hitboxes have the same id it returns false.
@@ -32,7 +33,7 @@ namespace physics {
 
 
 	private:
-		std::deque<Hitbox> m_hitboxes;
+		std::deque<std::shared_ptr<Hitbox>> m_hitboxes;
 	};
 
 }

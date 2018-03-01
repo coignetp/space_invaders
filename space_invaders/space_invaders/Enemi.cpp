@@ -3,7 +3,8 @@
 #include <random>
 
 
-Enemi::Enemi(const sf::Rect<int> &walls, graphics::GameWindow &win) :
+Enemi::Enemi(physics::HitboxManager &hitboxManager, const sf::Rect<int> &walls, graphics::GameWindow &win) :
+	Ship(hitboxManager),
 	m_walls(walls)
 {
 	this->getRealSprite() = std::make_shared<sf::Sprite>(
@@ -58,14 +59,14 @@ sf::Rect<int> Enemi::setWalls(const sf::Rect<int> &walls)
 }
 
 
-void Enemi::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall)
+void Enemi::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, physics::HitboxManager &hitboxManager, const sf::Vector2i &begWall)
 {
 	std::default_random_engine generator;
 	std::uniform_int_distribution<int> distribution(0, 1000);
 
 	sf::Vector2i pos(getPosition());
 
-	Ship::update(t+sf::microseconds(distribution(generator)), sf::Vector2i(m_walls.width, m_walls.height), win, sf::Vector2i(m_walls.left, m_walls.top));
+	Ship::update(t+sf::microseconds(distribution(generator)), sf::Vector2i(m_walls.width, m_walls.height), win, hitboxManager, sf::Vector2i(m_walls.left, m_walls.top));
 
 	if (pos == getPosition())
 	{

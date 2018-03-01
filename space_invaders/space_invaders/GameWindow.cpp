@@ -5,9 +5,9 @@
 
 
 namespace graphics {
-	GameWindow::GameWindow(sf::VideoMode vid, const sf::String &title, sf::Uint32 style, const sf::ContextSettings &settings) :
+	GameWindow::GameWindow(sf::VideoMode vid, const sf::String &title, sf::Uint32 style, const sf::ContextSettings &settings, physics::HitboxManager &hitboxManager) :
 		sf::RenderWindow(vid, title, style, settings),
-		m_character(*this)
+		m_character(hitboxManager, *this)
 	{
 		for (unsigned int i(0); i < WINDOW_LAYER_TOTAL; i++)
 			m_layers.push_back(std::make_unique<Layer>());

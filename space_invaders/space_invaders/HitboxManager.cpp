@@ -11,7 +11,7 @@ namespace physics {
 	{
 	}
 
-	std::deque<Hitbox> &HitboxManager::getRealHitboxes()
+	std::deque<std::shared_ptr<Hitbox>> &HitboxManager::getRealHitboxes()
 	{
 		return m_hitboxes;
 	}
@@ -26,9 +26,9 @@ namespace physics {
 
 	bool HitboxManager::isColliding(const Hitbox &h) const
 	{
-		for (const Hitbox &h2 : m_hitboxes)
+		for (const std::shared_ptr<Hitbox> h2 : m_hitboxes)
 		{
-			if (areColliding(h, h2))
+			if (areColliding(h, *h2))
 				return true;
 		}
 

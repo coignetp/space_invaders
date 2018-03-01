@@ -4,8 +4,8 @@
 
 extern int MISSILE_ID;
 
-Ship::Ship() :
-	Entity(),
+Ship::Ship(physics::HitboxManager &hitboxManager) :
+	Entity(hitboxManager),
 	m_rateOfFire(0),
 	m_missileSpeed(0)
 {
@@ -39,16 +39,16 @@ float Ship::setRateOfFire(const float &rate)
 }
 
 
-void Ship::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall)
+void Ship::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, physics::HitboxManager &hitboxManager, const sf::Vector2i &begWall)
 {
-	Entity::update(t, wall, win, begWall);
+	Entity::update(t, wall, win, hitboxManager, begWall);
 	if (m_rateOfFire != 0)
 		m_lastUpdateMissile += t;
 
 	if (m_lastUpdateMissile.asSeconds()*m_rateOfFire >= 1)
 	{
 		getRealMissiles().insert(std::make_pair(
-			MISSILE_ID, std::make_shared<Missile>(Missile(win, sf::Vector2i(
+			MISSILE_ID, std::make_shared<Missile>(Missile(hitboxManager, win, sf::Vector2i(
 				getPosition().x + (int)(getRealSprite()->getLocalBounds().width / 2),
 				getPosition().y + 3
 			))))
@@ -62,9 +62,9 @@ void Ship::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWin
 	while (it != m_missiles.end())
 	{
 		if (dynamic_cast<Enemi*>(this))
-			it->second->update(t, sf::Vector2i(1024, 800), win);
+			it->second->update(t, sf::Vector2i(1024, 800), win, hitboxManager);
 		else
-			it->second->update(t, wall, win);
+			it->second->update(t, wall, win, hitboxManager);
 
 		if (it->second->getToDelete())
 		{

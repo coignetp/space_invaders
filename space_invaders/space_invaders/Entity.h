@@ -5,11 +5,12 @@
 #include "Hitbox.h"
 
 namespace graphics { class GameWindow; }
+namespace physics { class HitboxManager; }
 
 class Entity
 {
 public:
-	Entity();
+	Entity(physics::HitboxManager &hitboxManager);
 	~Entity();
 
 public:
@@ -93,7 +94,7 @@ public:
 	*
 	* \return nothing
 	*/
-	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall = sf::Vector2i(0, 0));
+	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, physics::HitboxManager &hitboxManager, const sf::Vector2i &begWall = sf::Vector2i(0, 0));
 
 private:
 	sf::Vector2i m_position;

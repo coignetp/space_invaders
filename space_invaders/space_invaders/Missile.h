@@ -6,7 +6,7 @@ class Missile :
 	public Entity
 {
 public:
-	Missile(graphics::GameWindow &win, const sf::Vector2i &pos);
+	Missile(physics::HitboxManager &hitboxManager, graphics::GameWindow &win, const sf::Vector2i &pos);
 	~Missile();
 
 public:
@@ -30,7 +30,7 @@ public:
 	*
 	* \return nothing
 	*/
-	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall = sf::Vector2i(0, 0));
+	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, physics::HitboxManager &hitboxManager, const sf::Vector2i &begWall = sf::Vector2i(0, 0));
 
 private:
 	bool m_toDelete;

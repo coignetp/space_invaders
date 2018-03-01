@@ -9,7 +9,7 @@ class Character :
 	public Ship
 {
 public:
-	Character(graphics::GameWindow &win);
+	Character(physics::HitboxManager &hitboxManager, graphics::GameWindow &win);
 	~Character();
 };
 

@@ -6,7 +6,7 @@ class Enemi :
 	public Ship
 {
 public:
-	Enemi(const sf::Rect<int> &walls, graphics::GameWindow &win);
+	Enemi(physics::HitboxManager &hitboxManager, const sf::Rect<int> &walls, graphics::GameWindow &win);
 	~Enemi();
 
 public:
@@ -32,7 +32,7 @@ public:
 	*
 	* \return nothing
 	*/
-	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall = sf::Vector2i(0, 0));
+	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, physics::HitboxManager &hitboxManager, const sf::Vector2i &begWall = sf::Vector2i(0, 0));
 
 private:
 	sf::Rect<int> m_walls;

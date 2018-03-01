@@ -9,7 +9,7 @@ class Ship :
 	public Entity
 {
 public:
-	Ship();
+	Ship(physics::HitboxManager &hitboxManager);
 	~Ship();
 public:
 	/**
@@ -40,7 +40,7 @@ public:
 	*
 	* \return nothing
 	*/
-	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall = sf::Vector2i(0, 0));
+	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, physics::HitboxManager &hitboxManager, const sf::Vector2i &begWall = sf::Vector2i(0, 0));
 
 protected:
 	float m_missileSpeed;

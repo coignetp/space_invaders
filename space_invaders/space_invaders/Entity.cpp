@@ -1,12 +1,14 @@
 #include "Entity.h"
 #include "GameWindow.h"
 #include "Layer.h"
+#include "HitboxManager.h"
 
 
-Entity::Entity() :
+Entity::Entity(physics::HitboxManager &hitboxManager) :
 	m_position(0, 0),
 	m_lastUpdate()
 {
+	hitboxManager.getRealHitboxes().push_back(std::make_shared<physics::Hitbox>(m_hitbox));
 }
 
 
@@ -156,7 +158,7 @@ int Entity::erase(graphics::GameWindow &win)
 }
 
 
-void Entity::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, const sf::Vector2i &begWall)
+void Entity::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, physics::HitboxManager &hitboxManager, const sf::Vector2i &begWall)
 {
 	if (m_speed.x != 0 || m_speed.y != 0)
 		m_lastUpdate += t;

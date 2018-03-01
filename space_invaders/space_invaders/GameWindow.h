@@ -18,7 +18,7 @@ namespace graphics {
 		public sf::RenderWindow
 	{
 	public:
-		GameWindow(sf::VideoMode vid, const sf::String &title, sf::Uint32 style = sf::Style::Default, const sf::ContextSettings &settings = sf::ContextSettings());
+		GameWindow(sf::VideoMode vid, const sf::String &title, sf::Uint32 style, const sf::ContextSettings &settings, physics::HitboxManager &hitboxManager);
 	
 		/**
 		* \brief Real reference of the layers.

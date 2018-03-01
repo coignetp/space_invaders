@@ -3,7 +3,8 @@
 #include "GameWindow.h"
 
 
-Character::Character(graphics::GameWindow &win)
+Character::Character(physics::HitboxManager &hitboxManager, graphics::GameWindow &win) :
+	Ship(hitboxManager)
 {
 	this->getRealSprite() = std::make_shared<sf::Sprite>(
 		sf::Sprite(*win.getRealRessources().getRealTextures()[graphics::RESS_ME])
