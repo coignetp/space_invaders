@@ -63,5 +63,13 @@ void Enemi::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWi
 	std::default_random_engine generator;
 	std::uniform_int_distribution<int> distribution(0, 1000);
 
+	sf::Vector2i pos(getPosition());
+
 	Ship::update(t+sf::microseconds(distribution(generator)), sf::Vector2i(m_walls.width, m_walls.height), win, sf::Vector2i(m_walls.left, m_walls.top));
+
+	if (pos == getPosition())
+	{
+		move(0, 20, m_walls);
+		setSpeed(-getSpeed());
+	}
 }
