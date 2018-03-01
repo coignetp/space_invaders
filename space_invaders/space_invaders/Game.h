@@ -30,6 +30,12 @@ public:
 	* \return int error code
 	*/
 	int update();
+	/**
+	* \brief Updates the physic model
+	*
+	* \return int error code
+	*/
+	int updateCollisions();
 
 	/**
 	* \brief Makes a new level with new enemis

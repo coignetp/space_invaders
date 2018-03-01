@@ -86,8 +86,16 @@ int Game::update()
 	for (std::list<Enemi>::iterator it(m_window.getRealEnemis().begin()); it != m_window.getRealEnemis().end(); it++)
 		it->update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()), m_window);
 
+	updateCollisions();
+
 	m_clock.restart();
 
+	return 0;
+}
+
+
+int Game::updateCollisions()
+{
 	return 0;
 }
 
