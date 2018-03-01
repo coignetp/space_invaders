@@ -50,6 +50,6 @@ void Missile::update(const sf::Time &t, const sf::Vector2i &wall, graphics::Game
 {
 	Entity::update(t, wall, win, begWall);
 
-	if (getPosition().y <= 0)
+	if (getPosition().y <= 0 || getPosition().y + getHitbox().getRect().height >= 800)
 		m_toDelete = true;
 }
