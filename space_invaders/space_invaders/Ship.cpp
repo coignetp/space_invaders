@@ -61,7 +61,10 @@ void Ship::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWin
 
 	while (it != m_missiles.end())
 	{
-		it->second->update(t, wall, win);
+		if (dynamic_cast<Enemi*>(this))
+			it->second->update(t, sf::Vector2i(1024, 800), win);
+		else
+			it->second->update(t, wall, win);
 
 		if (it->second->getToDelete())
 		{
