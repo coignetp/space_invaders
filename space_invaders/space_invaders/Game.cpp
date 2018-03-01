@@ -25,7 +25,7 @@ int Game::start()
 {
 	m_clock.restart();
 
-	newLevel(10, 5);
+	newLevel(6, 5);
 
 	while (m_window.isOpen())
 	{
@@ -96,15 +96,15 @@ void Game::newLevel(const int &nbW, const int &nbH)
 {
 	m_window.getRealEnemis().clear();
 
-	int wgap = ((1024 - 64) / nbW);
+	int wgap = ((1024) / (2*nbW));
 
 	for (int i(0); i < nbH; i++)
 	{
 		for (int j(0); j < nbW; j++)
 		{
-			m_window.getRealEnemis().push_back(Enemi(sf::Rect<int>(wgap*j, i*80, 1024-64 - (nbW-j)*wgap, 600), m_window));
+			m_window.getRealEnemis().push_back(Enemi(sf::Rect<int>(wgap*j, i*80, (1024/2)+64, 600), m_window));
 			m_window.getRealEnemis().back().print(m_window);
-			m_window.getRealEnemis().back().setSpeed(sf::Vector2f(20, 0));
+			m_window.getRealEnemis().back().setSpeed(sf::Vector2f(50, 0));
 		}
 	}
 }

@@ -65,26 +65,31 @@ sf::Vector2i Entity::move(const int &dx, const int &dy, const sf::Rect<int> &wal
 	}
 	else
 	{
+		int gapX = m_position.x - m_hitbox.getRealRect().left;
+		int gapY = m_position.y - m_hitbox.getRealRect().top;
 		if (m_hitbox.getRealRect().left + dx < wall.left && dx < 0)
 		{
-			m_position.x -= (m_hitbox.getRealRect().left - wall.left);
 			m_hitbox.getRealRect().left = wall.left;
+			m_position.x = m_hitbox.getRealRect().left + gapX;
 		}
 		if (m_hitbox.getRealRect().left + m_hitbox.getRealRect().width + dx > wall.left + wall.width && dx > 0)
 		{
-			m_position.x += (wall.left + wall.width -m_hitbox.getRealRect().width - m_hitbox.getRealRect().left);
+			//m_position.x += (wall.left + wall.width -m_hitbox.getRealRect().width - m_hitbox.getRealRect().left);
 			m_hitbox.getRealRect().left = wall.left + wall.width - m_hitbox.getRealRect().width;
+			m_position.x = m_hitbox.getRealRect().left + gapX;
 		}
 
 		if (m_hitbox.getRealRect().top + dy < wall.top && dy < 0)
 		{
-			m_position.y -= (m_hitbox.getRealRect().top - wall.top);
+			//m_position.y -= (m_hitbox.getRealRect().top - wall.top);
 			m_hitbox.getRealRect().top = wall.top;
+			m_position.y = m_hitbox.getRealRect().top + gapY;
 		}
 		if (m_hitbox.getRealRect().top + m_hitbox.getRealRect().height + dy > wall.top + wall.height && dy > 0)
 		{
-			m_position.y += (wall.top + wall.height - m_hitbox.getRealRect().height - m_hitbox.getRealRect().top);
+			//m_position.y += (wall.top + wall.height - m_hitbox.getRealRect().height - m_hitbox.getRealRect().top);
 			m_hitbox.getRealRect().top = wall.top + wall.height - m_hitbox.getRealRect().height;
+			m_position.y = m_hitbox.getRealRect().top + gapY;
 		}
 	
 	}
@@ -159,7 +164,7 @@ void Entity::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameW
 		|| m_lastUpdate.asSeconds()*m_speed.x <= -1 || m_lastUpdate.asSeconds()*m_speed.y <= -1)
 	{
 		move((int)(m_lastUpdate.asSeconds()*m_speed.x), (int)(m_lastUpdate.asSeconds()*m_speed.y), 
-			sf::Rect<int>(begWall.x, begWall.y, begWall.x + wall.x, begWall.y + wall.y));
+			sf::Rect<int>(begWall.x, begWall.y, wall.x, wall.y));
 		m_lastUpdate = sf::Time();
 	}
 }
