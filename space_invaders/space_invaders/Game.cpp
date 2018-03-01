@@ -21,6 +21,12 @@ graphics::GameWindow& Game::getRealWindow()
 }
 
 
+physics::HitboxManager& Game::getRealHitboxManager()
+{
+	return m_hitboxManager;
+}
+
+
 int Game::start()
 {
 	m_clock.restart();

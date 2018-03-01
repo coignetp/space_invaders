@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameWindow.h"
+#include "HitboxManager.h"
 
 class Game
 {
@@ -15,6 +16,12 @@ public:
 	* \return a reference to GameWindow.
 	*/
 	graphics::GameWindow& getRealWindow();
+	/**
+	* \brief Gives the actual hitbox manager
+	*
+	* \return a reference to HitboxManager.
+	*/
+	physics::HitboxManager& getRealHitboxManager();
 
 	/**
 	* \brief Starts the game. Contains the main loop
@@ -47,5 +54,6 @@ public:
 private:
 	graphics::GameWindow m_window;
 	sf::Clock m_clock;
+	physics::HitboxManager m_hitboxManager;
 };
 
