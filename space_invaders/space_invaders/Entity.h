@@ -58,13 +58,13 @@ public:
 	*
 	* \return physics::Hitbox entity hitbox.
 	*/
-	physics::Hitbox getHitbox() const;
+	std::shared_ptr<physics::Hitbox> getHitbox() const;
 	/**
 	* \brief Gives a real reference to the hitbox.
 	*
-	* \return physics::Hitbox& entity hitbox.
+	* \return std::shared_ptr<physics::Hitbox>& entity hitbox.
 	*/
-	physics::Hitbox &getRealHitbox();
+	std::shared_ptr<physics::Hitbox> &getRealHitbox();
 
 	/**
 	* \brief Gives the sprite. Const method.
@@ -113,7 +113,7 @@ public:
 private:
 	sf::Vector2i m_position;
 	sf::Vector2f m_speed;
-	physics::Hitbox m_hitbox;
+	std::shared_ptr<physics::Hitbox> m_hitbox;
 	std::shared_ptr<sf::Sprite> m_sprite;
 	sf::Time m_lastUpdate;
 	std::shared_ptr<physics::HitboxManager> m_hitboxManager;

@@ -15,7 +15,7 @@ Enemi::Enemi(physics::HitboxManager &hitboxManager, const sf::Rect<int> &walls, 
 		(float)(64/ this->getRealSprite()->getLocalBounds().height)
 	);
 	win.getRealSpriteManager().getRealSprites().insert(std::make_pair(
-		getHitbox().getId(),
+		getHitbox()->getId(),
 		this->getRealSprite()
 	));
 
@@ -29,7 +29,7 @@ Enemi::Enemi(physics::HitboxManager &hitboxManager, const sf::Rect<int> &walls, 
 	setRateOfFire(0.1);
 
 	// Initiate the hitbox
-	getRealHitbox().getRealRect() = sf::Rect<int>(
+	getRealHitbox()->getRealRect() = sf::Rect<int>(
 		(int)walls.left,
 		(int)walls.top,
 		(int)this->getRealSprite()->getGlobalBounds().width,

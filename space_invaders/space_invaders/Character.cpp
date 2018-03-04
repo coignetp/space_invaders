@@ -10,7 +10,7 @@ Character::Character(physics::HitboxManager &hitboxManager, graphics::GameWindow
 		sf::Sprite(*win.getRealRessources().getRealTextures()[graphics::RESS_ME])
 	);
 	win.getRealSpriteManager().getRealSprites().insert(std::make_pair(
-		getHitbox().getId(),
+		getHitbox()->getId(),
 		this->getRealSprite()
 	));
 
@@ -20,7 +20,7 @@ Character::Character(physics::HitboxManager &hitboxManager, graphics::GameWindow
 	));
 
 	// Initiate the hitbox
-	getRealHitbox().getRealRect() = sf::Rect<int>(
+	getRealHitbox()->getRealRect() = sf::Rect<int>(
 		(int)(getPosition().x + getRealSprite()->getLocalBounds().width/4),
 		(int)getPosition().y,
 		(int)getRealSprite()->getLocalBounds().width / 2,

@@ -102,7 +102,7 @@ int Game::update()
 
 int Game::updateCollisions()
 {
-	if (m_hitboxManager.isColliding(m_window.getRealCharacter().getHitbox()))
+	if (m_hitboxManager.isColliding(*m_window.getRealCharacter().getHitbox()))
 		m_window.setTitle("Killed !");
 
 	return 0;

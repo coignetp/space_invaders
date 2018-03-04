@@ -8,10 +8,11 @@
 Entity::Entity(physics::HitboxManager &hitboxManager) :
 	m_position(0, 0),
 	m_lastUpdate(),
-	m_hitboxManager(std::make_shared<physics::HitboxManager>(hitboxManager))
+	m_hitboxManager(std::make_shared<physics::HitboxManager>(hitboxManager)),
+	m_hitbox(std::make_shared<physics::Hitbox>())
 {
-	std::cout << "New : " << m_hitbox.getId() << "\n";
-	hitboxManager.getRealHitboxes().push_back(std::make_shared<physics::Hitbox>(m_hitbox));
+	std::cout << "New : " << m_hitbox->getId() << "\n";
+	hitboxManager.getRealHitboxes().push_back(m_hitbox);
 }
 
 
@@ -27,10 +28,10 @@ Entity::Entity(const Entity &entity)
 
 Entity::~Entity()
 {
-	std::cout << "Old : " << m_hitbox.getId() << "\n";
+	std::cout << "Old : " << m_hitbox->getId() << "\n";
 	/*for (std::deque<std::shared_ptr<physics::Hitbox>>::iterator it = m_hitboxManager->getRealHitboxes().begin();
 		it != m_hitboxManager->getRealHitboxes().end(); ++it)
-		if ((*it)->getId() == m_hitbox.getId())
+		if ((*it)->getId() == m_hitbox->getId())
 			m_hitboxManager->getRealHitboxes().erase(it);*/
 }
 
@@ -45,8 +46,8 @@ sf::Vector2i Entity::setPosition(const sf::Vector2i &pos)
 {
 	m_position = pos;
 
-	m_hitbox.getRealRect().left = pos.x;
-	m_hitbox.getRealRect().top = pos.y;
+	m_hitbox->getRealRect().left = pos.x;
+	m_hitbox->getRealRect().top = pos.y;
 
 	m_sprite->setPosition(sf::Vector2f(pos));
 
@@ -71,45 +72,45 @@ sf::Vector2f Entity::setSpeed(const sf::Vector2f &speed)
 sf::Vector2i Entity::move(const int &dx, const int &dy, const sf::Rect<int> &wall)
 {
 	if ((wall.left == -1 && wall.top == -1)
-		|| (m_hitbox.getRealRect().left + dx >= wall.left
-			&& m_hitbox.getRealRect().left + m_hitbox.getRealRect().width + dx <= wall.left + wall.width
-			&& m_hitbox.getRealRect().top + dy >= wall.top
-			&& m_hitbox.getRealRect().top + m_hitbox.getRealRect().height + dy <= wall.top + wall.height))
+		|| (m_hitbox->getRealRect().left + dx >= wall.left
+			&& m_hitbox->getRealRect().left + m_hitbox->getRealRect().width + dx <= wall.left + wall.width
+			&& m_hitbox->getRealRect().top + dy >= wall.top
+			&& m_hitbox->getRealRect().top + m_hitbox->getRealRect().height + dy <= wall.top + wall.height))
 	{
 		m_position.x += dx;
 		m_position.y += dy;
 
-		m_hitbox.getRealRect().left += dx;
-		m_hitbox.getRealRect().top += dy;
+		m_hitbox->getRealRect().left += dx;
+		m_hitbox->getRealRect().top += dy;
 
 	}
 	else
 	{
-		int gapX = m_position.x - m_hitbox.getRealRect().left;
-		int gapY = m_position.y - m_hitbox.getRealRect().top;
-		if (m_hitbox.getRealRect().left + dx < wall.left && dx < 0)
+		int gapX = m_position.x - m_hitbox->getRealRect().left;
+		int gapY = m_position.y - m_hitbox->getRealRect().top;
+		if (m_hitbox->getRealRect().left + dx < wall.left && dx < 0)
 		{
-			m_hitbox.getRealRect().left = wall.left;
-			m_position.x = m_hitbox.getRealRect().left + gapX;
+			m_hitbox->getRealRect().left = wall.left;
+			m_position.x = m_hitbox->getRealRect().left + gapX;
 		}
-		if (m_hitbox.getRealRect().left + m_hitbox.getRealRect().width + dx > wall.left + wall.width && dx > 0)
+		if (m_hitbox->getRealRect().left + m_hitbox->getRealRect().width + dx > wall.left + wall.width && dx > 0)
 		{
-			//m_position.x += (wall.left + wall.width -m_hitbox.getRealRect().width - m_hitbox.getRealRect().left);
-			m_hitbox.getRealRect().left = wall.left + wall.width - m_hitbox.getRealRect().width;
-			m_position.x = m_hitbox.getRealRect().left + gapX;
+			//m_position.x += (wall.left + wall.width -m_hitbox->getRealRect().width - m_hitbox->getRealRect().left);
+			m_hitbox->getRealRect().left = wall.left + wall.width - m_hitbox->getRealRect().width;
+			m_position.x = m_hitbox->getRealRect().left + gapX;
 		}
 
-		if (m_hitbox.getRealRect().top + dy < wall.top && dy < 0)
+		if (m_hitbox->getRealRect().top + dy < wall.top && dy < 0)
 		{
-			//m_position.y -= (m_hitbox.getRealRect().top - wall.top);
-			m_hitbox.getRealRect().top = wall.top;
-			m_position.y = m_hitbox.getRealRect().top + gapY;
+			//m_position.y -= (m_hitbox->getRealRect().top - wall.top);
+			m_hitbox->getRealRect().top = wall.top;
+			m_position.y = m_hitbox->getRealRect().top + gapY;
 		}
-		if (m_hitbox.getRealRect().top + m_hitbox.getRealRect().height + dy > wall.top + wall.height && dy > 0)
+		if (m_hitbox->getRealRect().top + m_hitbox->getRealRect().height + dy > wall.top + wall.height && dy > 0)
 		{
-			//m_position.y += (wall.top + wall.height - m_hitbox.getRealRect().height - m_hitbox.getRealRect().top);
-			m_hitbox.getRealRect().top = wall.top + wall.height - m_hitbox.getRealRect().height;
-			m_position.y = m_hitbox.getRealRect().top + gapY;
+			//m_position.y += (wall.top + wall.height - m_hitbox->getRealRect().height - m_hitbox->getRealRect().top);
+			m_hitbox->getRealRect().top = wall.top + wall.height - m_hitbox->getRealRect().height;
+			m_position.y = m_hitbox->getRealRect().top + gapY;
 		}
 	
 	}
@@ -119,13 +120,13 @@ sf::Vector2i Entity::move(const int &dx, const int &dy, const sf::Rect<int> &wal
 }
 
 
-physics::Hitbox Entity::getHitbox() const
+std::shared_ptr<physics::Hitbox> Entity::getHitbox() const
 {
 	return m_hitbox;
 }
 
 
-physics::Hitbox &Entity::getRealHitbox()
+std::shared_ptr<physics::Hitbox> &Entity::getRealHitbox()
 {
 	return m_hitbox;
 }
@@ -152,7 +153,7 @@ std::shared_ptr<physics::HitboxManager> Entity::getHitboxManager() const
 int Entity::print(graphics::GameWindow &win)
 {
 	getRealSprite()->setPosition(sf::Vector2f(getPosition()));
-	win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->addSprite(m_hitbox.getId());
+	win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->addSprite(m_hitbox->getId());
 
 	return 0;
 }
@@ -164,7 +165,7 @@ int Entity::erase(graphics::GameWindow &win)
 		std::remove(
 			win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().begin(),
 			win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().end(), 
-			m_hitbox.getId()), 
+			m_hitbox->getId()), 
 		win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().end()
 	);*/
 	/*std::deque<int>::iterator it(win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().begin());
@@ -173,7 +174,7 @@ int Entity::erase(graphics::GameWindow &win)
 
 	for(unsigned int i(0) ; i < win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().size(); i++)
 	{
-		if (win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites()[i] == m_hitbox.getId())
+		if (win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites()[i] == m_hitbox->getId())
 		{
 			win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().erase(
 				win.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().begin() + i

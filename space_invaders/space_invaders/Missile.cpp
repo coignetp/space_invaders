@@ -12,14 +12,14 @@ Missile::Missile(physics::HitboxManager &hitboxManager, graphics::GameWindow &wi
 		sf::Sprite(*win.getRealRessources().getRealTextures()[graphics::RESS_MISSILE])
 		);
 	win.getRealSpriteManager().getRealSprites().insert(std::make_pair(
-		getHitbox().getId(),
+		getHitbox()->getId(),
 		this->getRealSprite()
 	));
 
 	setPosition(pos);
 
 	// Initiate the hitbox
-	getRealHitbox().getRealRect() = sf::Rect<int>(
+	getRealHitbox()->getRealRect() = sf::Rect<int>(
 		getPosition().x,
 		getPosition().y,
 		(int)getRealSprite()->getLocalBounds().width,
@@ -58,6 +58,6 @@ void Missile::update(const sf::Time &t, const sf::Vector2i &wall, graphics::Game
 {
 	Entity::update(t, wall, win, hitboxManager, begWall);
 
-	if (getPosition().y <= 0 || getPosition().y + getHitbox().getRect().height >= 800)
+	if (getPosition().y <= 0 || getPosition().y + getHitbox()->getRect().height >= 800)
 		m_toDelete = true;
 }
