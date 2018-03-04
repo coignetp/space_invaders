@@ -7,6 +7,7 @@ class Missile :
 {
 public:
 	Missile(physics::HitboxManager &hitboxManager, graphics::GameWindow &win, const sf::Vector2i &pos);
+	Missile(const Missile& miss);
 	~Missile();
 
 public:

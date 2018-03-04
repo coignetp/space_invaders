@@ -48,10 +48,10 @@ void Ship::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWin
 	if (m_lastUpdateMissile.asSeconds()*m_rateOfFire >= 1)
 	{
 		getRealMissiles().insert(std::make_pair(
-			MISSILE_ID, std::make_shared<Missile>(Missile(hitboxManager, win, sf::Vector2i(
+			MISSILE_ID, std::make_shared<Missile>(hitboxManager, win, sf::Vector2i(
 				getPosition().x + (int)(getRealSprite()->getLocalBounds().width / 2),
 				getPosition().y + 3
-			))))
+			)))
 		);
 		getRealMissiles().at(MISSILE_ID)->setSpeed(sf::Vector2f(0.0, m_missileSpeed));
 		m_lastUpdateMissile = sf::Time();

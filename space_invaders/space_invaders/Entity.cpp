@@ -3,17 +3,35 @@
 #include "Layer.h"
 #include "HitboxManager.h"
 
+#include <iostream>
 
 Entity::Entity(physics::HitboxManager &hitboxManager) :
 	m_position(0, 0),
-	m_lastUpdate()
+	m_lastUpdate(),
+	m_hitboxManager(std::make_shared<physics::HitboxManager>(hitboxManager))
 {
+	std::cout << "New : " << m_hitbox.getId() << "\n";
 	hitboxManager.getRealHitboxes().push_back(std::make_shared<physics::Hitbox>(m_hitbox));
+}
+
+
+Entity::Entity(const Entity &entity)
+{
+	m_position = entity.getPosition();
+	m_hitbox = entity.getHitbox();
+	m_speed = entity.getSpeed();
+	m_sprite = entity.getSprite();
+	m_hitboxManager = entity.getHitboxManager();
 }
 
 
 Entity::~Entity()
 {
+	std::cout << "Old : " << m_hitbox.getId() << "\n";
+	/*for (std::deque<std::shared_ptr<physics::Hitbox>>::iterator it = m_hitboxManager->getRealHitboxes().begin();
+		it != m_hitboxManager->getRealHitboxes().end(); ++it)
+		if ((*it)->getId() == m_hitbox.getId())
+			m_hitboxManager->getRealHitboxes().erase(it);*/
 }
 
 
@@ -113,9 +131,21 @@ physics::Hitbox &Entity::getRealHitbox()
 }
 
 
+std::shared_ptr<sf::Sprite> Entity::getSprite() const
+{
+	return m_sprite;
+}
+
+
 std::shared_ptr<sf::Sprite> &Entity::getRealSprite()
 {
 	return m_sprite;
+}
+
+
+std::shared_ptr<physics::HitboxManager> Entity::getHitboxManager() const
+{
+	return m_hitboxManager;
 }
 
 

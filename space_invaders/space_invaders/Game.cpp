@@ -89,8 +89,8 @@ int Game::update()
 	}
 	m_window.getRealCharacter().update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()), m_window, m_hitboxManager);
 
-	for (std::list<Enemi>::iterator it(m_window.getRealEnemis().begin()); it != m_window.getRealEnemis().end(); it++)
-		it->update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()),m_window, m_hitboxManager);
+	for (std::list<std::shared_ptr<Enemi>>::iterator it(m_window.getRealEnemis().begin()); it != m_window.getRealEnemis().end(); it++)
+		(*it)->update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()),m_window, m_hitboxManager);
 
 	updateCollisions();
 
@@ -102,6 +102,9 @@ int Game::update()
 
 int Game::updateCollisions()
 {
+	if (m_hitboxManager.isColliding(m_window.getRealCharacter().getHitbox()))
+		m_window.setTitle("Killed !");
+
 	return 0;
 }
 
@@ -116,9 +119,9 @@ void Game::newLevel(const int &nbW, const int &nbH)
 	{
 		for (int j(0); j < nbW; j++)
 		{
-			m_window.getRealEnemis().push_back(Enemi(m_hitboxManager, sf::Rect<int>(wgap*j, i*80, (1024/2)+64, 600), m_window));
-			m_window.getRealEnemis().back().print(m_window);
-			m_window.getRealEnemis().back().setSpeed(sf::Vector2f(50, 0));
+			m_window.getRealEnemis().push_back(std::make_shared<Enemi>(m_hitboxManager, sf::Rect<int>(wgap*j, i*80, (1024/2)+64, 600), m_window));
+			m_window.getRealEnemis().back()->print(m_window);
+			m_window.getRealEnemis().back()->setSpeed(sf::Vector2f(50, 0));
 		}
 	}
 }

@@ -30,6 +30,13 @@ Missile::Missile(physics::HitboxManager &hitboxManager, graphics::GameWindow &wi
 }
 
 
+Missile::Missile(const Missile& miss) :
+	Entity(miss)
+{
+	m_id = miss.getId();
+}
+
+
 Missile::~Missile()
 {
 }

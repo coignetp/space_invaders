@@ -8,6 +8,11 @@ namespace physics {
 	{
 	}
 
+	Hitbox::Hitbox(const Hitbox &hb)
+	{
+		m_id = hb.getId();
+		m_rect = hb.getRect();
+	}
 
 	Hitbox::~Hitbox()
 	{

@@ -49,7 +49,7 @@ namespace graphics {
 		*
 		* \return the real std::list<Enemi>.
 		*/
-		std::list<Enemi>& getRealEnemis();
+		std::list<std::shared_ptr<Enemi>>& getRealEnemis();
 
 		/**
 		* \brief Print the different layers
@@ -63,7 +63,7 @@ namespace graphics {
 		Ressources m_ressources;
 		SpriteManager m_spriteManager;
 		Character m_character;
-		std::list<Enemi> m_enemis;
+		std::list<std::shared_ptr<Enemi>> m_enemis;
 	};
 
 }

@@ -49,7 +49,7 @@ namespace graphics {
 		return m_character;
 	}
 
-	std::list<Enemi>& GameWindow::getRealEnemis()
+	std::list<std::shared_ptr<Enemi>>& GameWindow::getRealEnemis()
 	{
 		return m_enemis;
 	}

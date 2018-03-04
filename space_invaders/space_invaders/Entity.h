@@ -11,6 +11,7 @@ class Entity
 {
 public:
 	Entity(physics::HitboxManager &hitboxManager);
+	Entity(const Entity &entity);
 	~Entity();
 
 public:
@@ -66,11 +67,24 @@ public:
 	physics::Hitbox &getRealHitbox();
 
 	/**
+	* \brief Gives the sprite. Const method.
+	*
+	* \return std::shared_ptr<sf::Sprite>.
+	*/
+	std::shared_ptr<sf::Sprite> getSprite() const;
+
+	/**
 	* \brief Gives a real reference to the sprite shared pointer.
 	*
 	* \return std::shared_ptr<sf::Sprite>& entity sprite pointer.
 	*/
 	std::shared_ptr<sf::Sprite> &getRealSprite();
+	/**
+	* \brief Gives the hitboxmanager. Const method.
+	*
+	* \return std::shared_ptr<physics::HitboxManager>.
+	*/
+	std::shared_ptr<physics::HitboxManager> getHitboxManager() const;
 
 	/**
 	* \brief Prints the entity on the screen
@@ -102,5 +116,6 @@ private:
 	physics::Hitbox m_hitbox;
 	std::shared_ptr<sf::Sprite> m_sprite;
 	sf::Time m_lastUpdate;
+	std::shared_ptr<physics::HitboxManager> m_hitboxManager;
 };
 

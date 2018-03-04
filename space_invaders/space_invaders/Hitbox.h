@@ -7,6 +7,7 @@ namespace physics {
 	{
 	public:
 		Hitbox();
+		Hitbox(const Hitbox &hb);
 		~Hitbox();
 
 	public:
