@@ -19,6 +19,12 @@ namespace graphics {
 		* \return the textures map.
 		*/
 		std::map<int, std::shared_ptr<sf::Texture> >& getRealTextures();
+		/**
+		* \brief Gives the real font map
+		*
+		* \return std::map<int, std::shared_ptr<sf::Font> >& the font.
+		*/
+		std::map<int, std::shared_ptr<sf::Font> >& getRealFonts();
 
 		/**
 		* \brief Loads all the ressources of the game
@@ -28,6 +34,7 @@ namespace graphics {
 		int load();
 	private:
 		std::map<int, std::shared_ptr<sf::Texture> > m_textures;
+		std::map<int, std::shared_ptr<sf::Font> > m_fonts;
 	};
 
 }
