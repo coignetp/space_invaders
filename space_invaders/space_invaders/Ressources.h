@@ -5,6 +5,7 @@
 
 namespace graphics {
 	enum RESS_INDEX {RESS_BACKGROUND, RESS_ME, RESS_ENEMI, RESS_MISSILE, RESS_TOTAL};
+	enum FONT_INDEX {FONT_MAIN, FONT_TOTAL};
 	class Ressources
 	{
 	public:
