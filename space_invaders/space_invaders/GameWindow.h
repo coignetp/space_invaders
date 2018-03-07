@@ -6,6 +6,7 @@
 
 #include "Enemi.h"
 #include "SpriteManager.h"
+#include "TextManager.h"
 #include "Ressources.h"
 #include "Character.h"
 #include "Layer.h"
@@ -39,6 +40,12 @@ namespace graphics {
 		*/
 		SpriteManager& getRealSpriteManager();
 		/**
+		* \brief Real reference of the text manager.
+		*
+		* \return the real TextManager.
+		*/
+		TextManager& getRealTextManager();
+		/**
 		* \brief Real reference of the character.
 		*
 		* \return the real Character.
@@ -62,6 +69,7 @@ namespace graphics {
 		std::vector<std::unique_ptr<Layer>> m_layers;
 		Ressources m_ressources;
 		SpriteManager m_spriteManager;
+		TextManager m_textManager;
 		Character m_character;
 		std::list<std::shared_ptr<Enemi>> m_enemis;
 	};
