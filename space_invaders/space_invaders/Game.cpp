@@ -74,6 +74,17 @@ int Game::update()
 			case sf::Keyboard::Space:
 				m_window.getRealCharacter().setRateOfFire(10);
 				break;
+			case sf::Keyboard::Return:
+				if (m_over)
+				{
+					newLevel(6, 5);
+					m_window.getRealCharacter().setPosition(sf::Vector2i(
+						(int)(m_window.getSize().x / 2 - m_window.getRealCharacter().getSprite()->getGlobalBounds().width / 2),
+						(int)m_window.getRealCharacter().getPosition().y
+					));
+					m_over = false;
+				}
+				break;
 			default:
 				break;
 			}
@@ -94,12 +105,15 @@ int Game::update()
 			}
 		}
 	}
-	m_window.getRealCharacter().update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()), m_window, m_hitboxManager);
+	if (!m_over)
+	{
+		m_window.getRealCharacter().update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()), m_window, m_hitboxManager);
 
-	for (std::list<std::shared_ptr<Enemi>>::iterator it(m_window.getRealEnemis().begin()); it != m_window.getRealEnemis().end(); it++)
-		(*it)->update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()),m_window, m_hitboxManager);
+		for (std::list<std::shared_ptr<Enemi>>::iterator it(m_window.getRealEnemis().begin()); it != m_window.getRealEnemis().end(); it++)
+			(*it)->update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()), m_window, m_hitboxManager);
 
-	updateCollisions();
+		updateCollisions();
+	}
 
 	m_clock.restart();
 
@@ -110,7 +124,19 @@ int Game::update()
 int Game::updateCollisions()
 {
 	if (m_hitboxManager.isColliding(*m_window.getRealCharacter().getHitbox()))
-		m_window.setTitle("Killed !");
+	{
+		std::shared_ptr<sf::Text> text;
+		m_window.getRealTextManager().getRealTexts().insert(std::make_pair(0, std::make_shared<sf::Text>()));
+		text = m_window.getRealTextManager().getRealTexts()[0];
+
+		text->setString("You loose !\n\nPress enter to continue");
+		text->setFont(*m_window.getRealRessources().getRealFonts()[graphics::FONT_MAIN]);
+
+		text->setPosition(300, 300);
+		m_window.getRealLayers()[graphics::WINDOW_LAYER_TEXT]->addText(0);
+
+		m_over = true;
+	}
 
 	return 0;
 }
