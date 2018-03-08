@@ -11,6 +11,12 @@ public:
 
 public:
 	/**
+	* \brief Tells if the game is over or not.
+	*
+	* \return True if it is over.
+	*/
+	bool isOver();
+	/**
 	* \brief Gives the actual window
 	*
 	* \return a reference to GameWindow.
@@ -55,5 +61,6 @@ private:
 	graphics::GameWindow m_window;
 	sf::Clock m_clock;
 	physics::HitboxManager m_hitboxManager;
+	bool m_over;
 };
 

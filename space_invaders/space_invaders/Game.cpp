@@ -5,13 +5,20 @@ extern int MISSILE_ID;
 
 
 Game::Game(sf::VideoMode vid, const sf::String &title, sf::Uint32 style, const sf::ContextSettings &settings) :
-	m_window(vid, title, style, settings, m_hitboxManager)
+	m_window(vid, title, style, settings, m_hitboxManager),
+	m_over(false)
 {
 }
 
 
 Game::~Game()
 {
+}
+
+
+bool Game::isOver()
+{
+	return m_over;
 }
 
 
