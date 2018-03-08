@@ -44,4 +44,10 @@ namespace graphics {
 	{
 		m_sprites.push_back(id);
 	}
+
+
+	void Layer::addText(const int &id)
+	{
+		m_texts.push_back(id);
+	}
 }

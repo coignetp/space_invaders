@@ -43,6 +43,14 @@ namespace graphics {
 		* \return nothing
 		*/
 		void addSprite(const int &id);
+		/**
+		* \brief Add an other text on the layer
+		*
+		* \param id : the id of the text in the manager
+		*
+		* \return nothing
+		*/
+		void addText(const int &id);
 
 	private:
 		std::deque<int> m_sprites;
