@@ -20,6 +20,12 @@ namespace graphics {
 	}
 
 
+	std::deque<int> &Layer::getRealTexts()
+	{
+		return m_texts;
+	}
+
+
 	int Layer::print(GameWindow &win)
 	{
 		for (int sp : m_sprites)

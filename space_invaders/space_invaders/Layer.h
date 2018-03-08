@@ -19,6 +19,12 @@ namespace graphics {
 		* \return the real sprites.
 		*/
 		std::deque<int> &getRealSprites();
+		/**
+		* \brief Real reference of the text map.
+		* 
+		* \return the real texts.
+		*/
+		std::deque<int> &getRealTexts();
 
 		/**
 		* \brief Print the different sprites of the layer
@@ -40,6 +46,7 @@ namespace graphics {
 
 	private:
 		std::deque<int> m_sprites;
+		std::deque<int> m_texts;
 	};
 
 }
