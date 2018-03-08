@@ -32,6 +32,10 @@ namespace graphics {
 		{
 			win.draw(*win.getRealSpriteManager().getRealSprites()[sp]);
 		}
+		for (int txt : m_texts)
+		{
+			win.draw(*win.getRealTextManager().getRealTexts()[txt]);
+		}
 
 		return 0;
 	}
