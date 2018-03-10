@@ -201,3 +201,20 @@ void Entity::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameW
 		m_lastUpdate = sf::Time();
 	}
 }
+
+
+void Entity::clean(std::shared_ptr<graphics::SpriteManager> spManager)
+{
+	// Clean the sprite
+	spManager->getRealSprites().erase(spManager->getRealSprites().find(m_hitbox->getId()));
+
+	// Clean the hitbox
+	for (std::deque<std::shared_ptr<physics::Hitbox>>::iterator it(m_hitboxManager->getRealHitboxes().begin());
+		it != m_hitboxManager->getRealHitboxes().end(); it++)
+	{
+		if ((*it)->getId() == m_hitbox->getId())
+			it = m_hitboxManager->getRealHitboxes().erase(it);
+	}
+	std::cout << m_hitbox.use_count() << std::endl;
+	m_hitbox.reset();
+}
