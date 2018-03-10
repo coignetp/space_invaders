@@ -145,6 +145,32 @@ int Game::updateCollisions()
 void Game::newLevel(const int &nbW, const int &nbH)
 {
 	m_window.getRealEnemis().clear();
+	
+	std::map<int, std::shared_ptr<sf::Sprite>>::iterator it(m_window.getRealSpriteManager().getRealSprites().begin());
+	while (it != m_window.getRealSpriteManager().getRealSprites().end())
+	{
+		if (it->first != m_window.getRealCharacter().getHitbox()->getId()
+			&& it->first != m_window.getRealLayers()[graphics::WINDOW_LAYER_BG]->getRealSprites().at(0)
+			&& it->first >= 1)
+		{
+			it = m_window.getRealSpriteManager().getRealSprites().erase(it);
+		}
+		else
+			++it;
+	}
+	std::deque<int>::iterator it2(m_window.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().begin());
+	while (it2 != m_window.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().end())
+	{
+		if (*it2 >= 1)
+			it2 = m_window.getRealLayers()[graphics::WINDOW_LAYER_ITEM]->getRealSprites().erase(it2);
+		else
+			++it2;
+	}
+
+
+	m_window.getRealLayers()[graphics::WINDOW_LAYER_TEXT]->getRealTexts().clear();
+
+	m_window.getRealTextManager().getRealTexts().clear();
 
 	int wgap = ((1024) / (2*nbW));
 
