@@ -54,6 +54,23 @@ int Game::start()
 	return 0;
 }
 
+
+void Game::lost()
+{
+	std::shared_ptr<sf::Text> text;
+	m_window.getRealTextManager().getRealTexts().insert(std::make_pair(0, std::make_shared<sf::Text>()));
+	text = m_window.getRealTextManager().getRealTexts()[0];
+
+	text->setString("You loose !\n\nPress enter to continue");
+	text->setFont(*m_window.getRealRessources().getRealFonts()[graphics::FONT_MAIN]);
+
+	text->setPosition(300, 300);
+	m_window.getRealLayers()[graphics::WINDOW_LAYER_TEXT]->addText(0);
+
+	m_over = true;
+}
+
+
 int Game::update()
 {
 	sf::Event event;
@@ -125,17 +142,7 @@ int Game::updateCollisions()
 {
 	if (m_hitboxManager.isColliding(*m_window.getRealCharacter().getHitbox()))
 	{
-		std::shared_ptr<sf::Text> text;
-		m_window.getRealTextManager().getRealTexts().insert(std::make_pair(0, std::make_shared<sf::Text>()));
-		text = m_window.getRealTextManager().getRealTexts()[0];
-
-		text->setString("You loose !\n\nPress enter to continue");
-		text->setFont(*m_window.getRealRessources().getRealFonts()[graphics::FONT_MAIN]);
-
-		text->setPosition(300, 300);
-		m_window.getRealLayers()[graphics::WINDOW_LAYER_TEXT]->addText(0);
-
-		m_over = true;
+		lost();
 	}
 
 	return 0;

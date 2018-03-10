@@ -35,6 +35,12 @@ public:
 	* \return int error code
 	*/
 	int start();
+	/**
+	* \brief End the game.
+	*
+	* \return nothing
+	*/
+	void lost();
 
 	/**
 	* \brief Updates the input and all the graphic contents
