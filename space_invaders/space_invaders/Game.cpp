@@ -144,6 +144,27 @@ int Game::updateCollisions()
 	{
 		lost();
 	}
+	else
+	{
+		for (std::map<int, std::shared_ptr<Missile>>::iterator it(m_window.getRealCharacter().getRealMissiles().begin());
+			it != m_window.getRealCharacter().getRealMissiles().end(); it++)
+		{
+			for (std::list<std::shared_ptr<Enemi>>::iterator it2(m_window.getRealEnemis().begin());
+				it2 != m_window.getRealEnemis().end(); it2++)
+			{
+				if (m_hitboxManager.areColliding(*it->second->getRealHitbox(), *(*it2)->getRealHitbox()))
+				{
+					(*it2)->clean(std::make_shared<graphics::SpriteManager>(m_window.getRealSpriteManager()), m_window);
+					m_window.getRealEnemis().erase(it2);
+
+					it->second->clean(std::make_shared<graphics::SpriteManager>(m_window.getRealSpriteManager()), m_window);
+					m_window.getRealCharacter().getRealMissiles().erase(it);
+
+					return 0;
+				}
+			}
+		}
+	}
 
 	return 0;
 }
