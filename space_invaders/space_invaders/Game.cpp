@@ -6,7 +6,8 @@ extern int MISSILE_ID;
 
 Game::Game(sf::VideoMode vid, const sf::String &title, sf::Uint32 style, const sf::ContextSettings &settings) :
 	m_window(vid, title, style, settings, m_hitboxManager),
-	m_over(false)
+	m_over(false),
+	m_readyForNext(false)
 {
 }
 
@@ -71,6 +72,26 @@ void Game::lost()
 }
 
 
+bool Game::updateLevel()
+{
+	if (m_window.getRealEnemis().empty())
+	{
+		std::shared_ptr<sf::Text> text;
+		m_window.getRealTextManager().getRealTexts().insert(std::make_pair(1, std::make_shared<sf::Text>()));
+		text = m_window.getRealTextManager().getRealTexts()[1];
+
+		text->setString("You win !\n\nPress enter to continue");
+		text->setFont(*m_window.getRealRessources().getRealFonts()[graphics::FONT_MAIN]);
+
+		text->setPosition(300, 300);
+		m_window.getRealLayers()[graphics::WINDOW_LAYER_TEXT]->addText(1);
+
+		return true;
+	}
+	return false;
+}
+
+
 int Game::update()
 {
 	sf::Event event;
@@ -101,6 +122,15 @@ int Game::update()
 					));
 					m_over = false;
 				}
+				if (m_readyForNext)
+				{
+					newLevel(6, 5);
+					m_window.getRealCharacter().setPosition(sf::Vector2i(
+						(int)(m_window.getSize().x / 2 - m_window.getRealCharacter().getSprite()->getGlobalBounds().width / 2),
+						(int)m_window.getRealCharacter().getPosition().y
+					));
+					m_readyForNext = false;
+				}
 				break;
 			default:
 				break;
@@ -122,7 +152,7 @@ int Game::update()
 			}
 		}
 	}
-	if (!m_over)
+	if (!m_over && !m_readyForNext)
 	{
 		m_window.getRealCharacter().update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()), m_window, m_hitboxManager);
 
@@ -130,6 +160,8 @@ int Game::update()
 			(*it)->update(m_clock.getElapsedTime(), sf::Vector2i(m_window.getSize()), m_window, m_hitboxManager);
 
 		updateCollisions();
+
+		m_readyForNext = updateLevel();
 	}
 
 	m_clock.restart();

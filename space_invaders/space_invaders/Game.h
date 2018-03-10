@@ -41,6 +41,12 @@ public:
 	* \return nothing
 	*/
 	void lost();
+	/**
+	* \brief Update to know if the level is finished
+	*
+	* \return true if the level is finished
+	*/
+	bool updateLevel();
 
 	/**
 	* \brief Updates the input and all the graphic contents
@@ -68,5 +74,6 @@ private:
 	sf::Clock m_clock;
 	physics::HitboxManager m_hitboxManager;
 	bool m_over;
+	bool m_readyForNext;
 };
 
