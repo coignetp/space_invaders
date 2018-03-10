@@ -3,6 +3,7 @@
 #include <memory>
 #include <SFML\Graphics.hpp>
 #include "Hitbox.h"
+#include "SpriteManager.h"
 
 namespace graphics { class GameWindow; }
 namespace physics { class HitboxManager; }
@@ -84,7 +85,7 @@ public:
 	*
 	* \return std::shared_ptr<physics::HitboxManager>.
 	*/
-	std::shared_ptr<physics::HitboxManager> getHitboxManager() const;
+	physics::HitboxManager& getHitboxManager() const;
 
 	/**
 	* \brief Prints the entity on the screen
@@ -109,6 +110,12 @@ public:
 	* \return nothing
 	*/
 	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, physics::HitboxManager &hitboxManager, const sf::Vector2i &begWall = sf::Vector2i(0, 0));
+	/**
+	* \brief Cleans the entity attributs.
+	*
+	* \return nothing
+	*/
+	virtual void clean(std::shared_ptr<graphics::SpriteManager> spManager, graphics::GameWindow &win);
 
 private:
 	sf::Vector2i m_position;
@@ -116,6 +123,6 @@ private:
 	std::shared_ptr<physics::Hitbox> m_hitbox;
 	std::shared_ptr<sf::Sprite> m_sprite;
 	sf::Time m_lastUpdate;
-	std::shared_ptr<physics::HitboxManager> m_hitboxManager;
+	physics::HitboxManager &m_hitboxManager;
 };
 

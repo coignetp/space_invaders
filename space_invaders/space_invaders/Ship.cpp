@@ -1,5 +1,6 @@
 #include "Ship.h"
 #include "GameWindow.h"
+#include "Layer.h"
 
 
 extern int MISSILE_ID;
@@ -68,10 +69,22 @@ void Ship::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWin
 
 		if (it->second->getToDelete())
 		{
-			it->second->erase(win);
+			it->second->clean(std::make_shared<graphics::SpriteManager>(win.getRealSpriteManager()), win);
+
 			it = m_missiles.erase(it);
 		}
 		else
 			++it;
 	}
+}
+
+void Ship::clean(std::shared_ptr<graphics::SpriteManager> spManager, graphics::GameWindow &win)
+{
+	Entity::clean(spManager, win);
+
+	for (std::map<int, std::shared_ptr<Missile>>::iterator it(m_missiles.begin());
+		it != m_missiles.end(); it++)
+		it->second->clean(spManager, win);
+
+	m_missiles.clear();
 }

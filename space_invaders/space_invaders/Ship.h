@@ -41,6 +41,12 @@ public:
 	* \return nothing
 	*/
 	virtual void update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWindow &win, physics::HitboxManager &hitboxManager, const sf::Vector2i &begWall = sf::Vector2i(0, 0));
+	/**
+	* \brief Cleans the entity attributs.
+	*
+	* \return nothing
+	*/
+	virtual void clean(std::shared_ptr<graphics::SpriteManager> spManager, graphics::GameWindow &win);
 
 protected:
 	float m_missileSpeed;
