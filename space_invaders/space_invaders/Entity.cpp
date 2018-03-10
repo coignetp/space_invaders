@@ -8,7 +8,7 @@
 Entity::Entity(physics::HitboxManager &hitboxManager) :
 	m_position(0, 0),
 	m_lastUpdate(),
-	m_hitboxManager(std::make_shared<physics::HitboxManager>(hitboxManager)),
+	m_hitboxManager(hitboxManager),
 	m_hitbox(std::make_shared<physics::Hitbox>())
 {
 	std::cout << "New : " << m_hitbox->getId() << "\n";
@@ -16,19 +16,19 @@ Entity::Entity(physics::HitboxManager &hitboxManager) :
 }
 
 
-Entity::Entity(const Entity &entity)
+Entity::Entity(const Entity &entity) :
+	m_hitboxManager(getHitboxManager())
 {
 	m_position = entity.getPosition();
 	m_hitbox = entity.getHitbox();
 	m_speed = entity.getSpeed();
 	m_sprite = entity.getSprite();
-	m_hitboxManager = entity.getHitboxManager();
 }
 
 
 Entity::~Entity()
 {
-	std::cout << "Old : " << m_hitbox->getId() << "\n";
+	//std::cout << "Old : " << m_hitbox->getId() << "\n";
 	/*for (std::deque<std::shared_ptr<physics::Hitbox>>::iterator it = m_hitboxManager->getRealHitboxes().begin();
 		it != m_hitboxManager->getRealHitboxes().end(); ++it)
 		if ((*it)->getId() == m_hitbox->getId())
@@ -144,7 +144,7 @@ std::shared_ptr<sf::Sprite> &Entity::getRealSprite()
 }
 
 
-std::shared_ptr<physics::HitboxManager> Entity::getHitboxManager() const
+physics::HitboxManager& Entity::getHitboxManager() const
 {
 	return m_hitboxManager;
 }
@@ -208,15 +208,18 @@ void Entity::clean(std::shared_ptr<graphics::SpriteManager> spManager, graphics:
 	// Clean the sprite
 	spManager->getRealSprites().erase(spManager->getRealSprites().find(m_hitbox->getId()));
 
+	erase(win);
+
 	// Clean the hitbox
-	for (std::deque<std::shared_ptr<physics::Hitbox>>::iterator it(m_hitboxManager->getRealHitboxes().begin());
-		it != m_hitboxManager->getRealHitboxes().end(); it++)
+	for (std::deque<std::shared_ptr<physics::Hitbox>>::iterator it(m_hitboxManager.getRealHitboxes().begin());
+		it != m_hitboxManager.getRealHitboxes().end(); it++)
 	{
 		if ((*it)->getId() == m_hitbox->getId())
-			it = m_hitboxManager->getRealHitboxes().erase(it);
+		{
+			m_hitboxManager.getRealHitboxes().erase(it);
+			break;
+		}
 	}
 	std::cout << m_hitbox.use_count() << std::endl;
 	m_hitbox.reset();
-
-	erase(win);
 }

@@ -85,7 +85,7 @@ public:
 	*
 	* \return std::shared_ptr<physics::HitboxManager>.
 	*/
-	std::shared_ptr<physics::HitboxManager> getHitboxManager() const;
+	physics::HitboxManager& getHitboxManager() const;
 
 	/**
 	* \brief Prints the entity on the screen
@@ -123,6 +123,6 @@ private:
 	std::shared_ptr<physics::Hitbox> m_hitbox;
 	std::shared_ptr<sf::Sprite> m_sprite;
 	sf::Time m_lastUpdate;
-	std::shared_ptr<physics::HitboxManager> m_hitboxManager;
+	physics::HitboxManager &m_hitboxManager;
 };
 
