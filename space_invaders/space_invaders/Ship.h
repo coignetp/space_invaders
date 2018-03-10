@@ -46,7 +46,7 @@ public:
 	*
 	* \return nothing
 	*/
-	virtual void clean(std::shared_ptr<graphics::SpriteManager> spManager);
+	virtual void clean(std::shared_ptr<graphics::SpriteManager> spManager, graphics::GameWindow &win);
 
 protected:
 	float m_missileSpeed;

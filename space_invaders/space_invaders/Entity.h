@@ -115,7 +115,7 @@ public:
 	*
 	* \return nothing
 	*/
-	virtual void clean(std::shared_ptr<graphics::SpriteManager> spManager);
+	virtual void clean(std::shared_ptr<graphics::SpriteManager> spManager, graphics::GameWindow &win);
 
 private:
 	sf::Vector2i m_position;

@@ -78,13 +78,13 @@ void Ship::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWin
 	}
 }
 
-void Ship::clean(std::shared_ptr<graphics::SpriteManager> spManager)
+void Ship::clean(std::shared_ptr<graphics::SpriteManager> spManager, graphics::GameWindow &win)
 {
-	Entity::clean(spManager);
+	Entity::clean(spManager, win);
 
 	for (std::map<int, std::shared_ptr<Missile>>::iterator it(m_missiles.begin());
 		it != m_missiles.end(); it++)
-		it->second->clean(spManager);
+		it->second->clean(spManager, win);
 
 	m_missiles.clear();
 }
