@@ -209,8 +209,14 @@ void Game::newLevel(const int &nbW, const int &nbH)
 	{
 		(*it)->clean(std::make_shared<graphics::SpriteManager>(m_window.getRealSpriteManager()), m_window);
 	}
-
 	m_window.getRealEnemis().clear();
+
+	for (std::map<int, std::shared_ptr<Missile>>::iterator it(m_window.getRealCharacter().getRealMissiles().begin());
+		it != m_window.getRealCharacter().getRealMissiles().end(); it++)
+	{
+		it->second->clean(std::make_shared<graphics::SpriteManager>(m_window.getRealSpriteManager()), m_window);
+	}
+	m_window.getRealCharacter().getRealMissiles().clear();
 
 	m_window.getRealLayers()[graphics::WINDOW_LAYER_TEXT]->getRealTexts().clear();
 
