@@ -69,7 +69,7 @@ void Ship::update(const sf::Time &t, const sf::Vector2i &wall, graphics::GameWin
 
 		if (it->second->getToDelete())
 		{
-			it->second->clean(std::make_shared<graphics::SpriteManager>(win.getRealSpriteManager()));
+			it->second->clean(std::make_shared<graphics::SpriteManager>(win.getRealSpriteManager()), win);
 
 			it = m_missiles.erase(it);
 		}
