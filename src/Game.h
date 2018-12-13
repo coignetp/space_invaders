@@ -18,6 +18,12 @@ class Game {
    */
   bool isOver();
   /**
+   * \brief Tells the level of the game.
+   *
+   * \return int actual level.
+   */
+  int getLevel() const;
+  /**
    * \brief Gives the actual window
    *
    * \return a reference to GameWindow.
@@ -75,6 +81,7 @@ class Game {
   physics::HitboxManager m_hitboxManager;
   bool m_over;
   bool m_readyForNext;
+  int m_level;
 
   graphics::GameWindow m_window;
 };

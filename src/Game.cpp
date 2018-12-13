@@ -7,11 +7,14 @@ Game::Game(sf::VideoMode vid, const sf::String &title, sf::Uint32 style,
     : m_hitboxManager(),
       m_window(vid, title, style, settings, m_hitboxManager),
       m_over(false),
-      m_readyForNext(false) {}
+      m_readyForNext(false),
+      m_level(0) {}
 
 Game::~Game() {}
 
 bool Game::isOver() { return m_over; }
+
+int Game::getLevel() const { return m_level; }
 
 graphics::GameWindow &Game::getRealWindow() { return m_window; }
 
@@ -106,6 +109,7 @@ int Game::update() {
                                                      2),
                 (int)m_window.getRealCharacter().getPosition().y));
             m_readyForNext = false;
+            m_level++;
           }
           break;
         default:
