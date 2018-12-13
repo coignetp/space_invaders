@@ -1,40 +1,39 @@
 #pragma once
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 namespace physics {
-	class Hitbox
-	{
-	public:
-		Hitbox();
-		Hitbox(const Hitbox &hb);
-		~Hitbox();
+class Hitbox {
+ public:
+  Hitbox();
+  Hitbox(const Hitbox &hb);
+  ~Hitbox();
 
-	public:
-		/**
-		* \brief Gives the hitbox. The position depends
-		* on the screen.
-		*
-		* \return sf::Rect<int> hitbox.
-		*/
-		sf::Rect<int> getRect() const;
-		/**
-		* \brief Gives the real hitbox. The position depends
-		* on the screen.
-		*
-		* \return sf::Rect<int>& hitbox.
-		*/
-		sf::Rect<int> &getRealRect();
-		/**
-		* \brief Gives the unique hitbox id.
-		*
-		* \return int id.
-		*/
-		int getId() const;
+ public:
+  /**
+   * \brief Gives the hitbox. The position depends
+   * on the screen.
+   *
+   * \return sf::Rect<int> hitbox.
+   */
+  sf::Rect<int> getRect() const;
+  /**
+   * \brief Gives the real hitbox. The position depends
+   * on the screen.
+   *
+   * \return sf::Rect<int>& hitbox.
+   */
+  sf::Rect<int> &getRealRect();
+  /**
+   * \brief Gives the unique hitbox id.
+   *
+   * \return int id.
+   */
+  int getId() const;
 
-	private:
-		int m_id;
-		sf::Rect<int> m_rect;
-	};
+ private:
+  int m_id;
+  sf::Rect<int> m_rect;
+};
 
-}
+}  // namespace physics

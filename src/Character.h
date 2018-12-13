@@ -1,15 +1,12 @@
 #pragma once
 
-#include "Ship.h"
 #include "Missile.h"
+#include "Ship.h"
 
 class graphics::GameWindow;
 
-class Character :
-	public Ship
-{
-public:
-	Character(physics::HitboxManager &hitboxManager, graphics::GameWindow &win);
-	~Character();
+class Character : public Ship {
+ public:
+  Character(physics::HitboxManager &hitboxManager, graphics::GameWindow &win);
+  ~Character();
 };
-
