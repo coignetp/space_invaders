@@ -2,3 +2,9 @@ space_invaders/.vs/
 space_invaders/space_invaders/Debug/
 space_invaders/Debug/
 space_invaders/.visuallint/
+
+# VS CODE
+.vscode
+
+# BUILD directory
+BUILD
